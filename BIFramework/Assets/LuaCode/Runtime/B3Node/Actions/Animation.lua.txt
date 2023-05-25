@@ -1,0 +1,53 @@
+-- Animation
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "Animation",
+    type = "Action",
+    desc = "播放动画",
+    args = {
+        { "key", "string", "动画" },
+        { "speed", "int", "动画速度" },
+        { "fade", "int", "过度时间" },
+        { "reset", "boolean?", "强制重置" },
+        { "waiting", "boolean?", "等待结束" },
+    },
+}
+
+function M.run(node, env)
+    ---@type ShareRole
+    local role = Map:GetShareRole(env.owner.Type, env.owner.ID)
+    --Debug.Log("id = {1}, role = {2}", env.owner.ID, serpent.block(role))
+
+    if node.args.reset then
+        role.assignAction:Set(0)
+    end
+    if node:resume(env) then
+        if role and role.assignAction:Get() ~= 0 then
+            return bret.RUNNING
+        else
+            return bret.SUCCESS
+        end
+    else
+        if role and role.assignAction:Get() == 0 and role.curAction:Get() ~= AG_Monster[node.args.key] and role.curAction:Get() ~= AG_Hero[node.args.key] and not env.owner.IsDead then
+            if env.owner.Type == ActorType.Monster then
+                role.assignAction:Set(AG_Monster[node.args.key])
+            else
+                role.assignAction:Set(AG_Hero[node.args.key])
+            end
+            role.assignActionFade:Set(node.args.fade)
+            role.assignActionSpeed:Set(node.args.speed)
+            role.assignActionMode:Set(2)
+            role.assignActionPlaying:Set(false)
+            
+            if node.args.waiting then
+                return node:yield(env, true)
+            end
+        end
+        return bret.SUCCESS
+    end
+end
+
+return M

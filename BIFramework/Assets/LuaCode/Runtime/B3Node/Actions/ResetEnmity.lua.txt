@@ -1,0 +1,17 @@
+-- ResetEnmity
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "ResetEnmity",
+    type = "Action",
+    desc = "重置仇恨表",
+}
+
+function M.run(node, env)
+    env.owner.Enmity = {}
+    return bret.SUCCESS
+end
+
+return M

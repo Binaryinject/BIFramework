@@ -1,0 +1,31 @@
+-- SetProperty
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "SetProperty",
+    type = "Action",
+    desc = "设置值",
+    args = {
+        { "property", "string", "状态属性" },
+        { "setString", "string?", "字符串值" },
+        { "setNumber", "string?", "数字值" },
+        { "setBool", "boolean?", "布尔值" },
+    }
+}
+
+function M.run(node, env)
+    if node.args.setString then
+        env[node.args.property] = node.args.setString
+    elseif node.args.setNumber then
+        env[node.args.property] =  tonumber(node.args.setNumber)
+    elseif node.args.setBool ~= nil then
+        env[node.args.property] = node.args.setBool
+    else
+        env[node.args.property] = nil
+    end
+    return bret.SUCCESS
+end
+
+return M

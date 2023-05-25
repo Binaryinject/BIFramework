@@ -1,0 +1,42 @@
+-- CmpConfig
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "CmpConfig",
+    type = "Condition",
+    desc = "配置表的属性对比",
+    args = {
+        {"property", "string", "左字段"},
+        {"cmp", "enum", "对比", 1, {
+            {name = ">", value = 1},
+            {name = ">=", value = 2},
+            {name = "==", value = 3},
+            {name = "<=", value = 4},
+            {name = "<", value = 5},
+        }}
+    },
+    input = { "属性" },
+}
+
+function M.run(node, env, input)
+    ---@type Monster
+    local o = env.owner
+    local species = tostring(o.Config.Species)
+    local prop = Configs.RoleSpecies[species][node.args.property]
+    if node.args.cmp == 1 then
+        return TernaryOp(prop > input, bret.SUCCESS, bret.FAIL)
+    elseif node.args.cmp == 2 then
+        return TernaryOp(prop >= input, bret.SUCCESS, bret.FAIL)
+    elseif node.args.cmp == 3 then
+        return TernaryOp(prop == input, bret.SUCCESS, bret.FAIL)
+    elseif node.args.cmp == 4 then
+        return TernaryOp(prop <= input, bret.SUCCESS, bret.FAIL)
+    elseif node.args.cmp == 5 then
+        return TernaryOp(prop < input, bret.SUCCESS, bret.FAIL)
+    end
+    return bret.FAIL
+end
+
+return M

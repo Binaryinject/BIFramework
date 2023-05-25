@@ -1,0 +1,20 @@
+-- GetEnmity
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetEnmity",
+    type = "Condition",
+    desc = "仇恨表获取目标",
+    output = { "目标" },
+}
+
+function M.run(node, env)
+    if #env.enmity > 0 then
+        return bret.SUCCESS, env.enmity[1]
+    end
+    return bret.FAIL
+end
+
+return M

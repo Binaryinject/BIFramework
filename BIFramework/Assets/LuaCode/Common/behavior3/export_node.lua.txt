@@ -1,0 +1,44 @@
+local json = require "rapidjson"
+local process = require "Runtime.B3Node.Process"
+
+local nodes = {}
+for _, v in pairs(process) do
+    if v.args then
+        for i, vv in pairs(v.args) do
+            v.args[i] = {
+                name = vv[1],
+                type = vv[2],
+                desc = vv[3],
+                default = vv[4],
+                options = vv[5],
+            }
+        end
+    end
+
+    local doc = v.doc
+    if type(doc) == "string" then
+        doc = string.gsub(doc, "^([ ]+", "")
+        doc = string.gsub(doc, "\n([ ]+", "\n")
+    end
+
+    local node = {
+        name = v.name,
+        type = v.type,
+        desc = v.desc,
+        args = v.args,
+        input = v.input,
+        output = v.output,
+        doc = doc,
+    }
+    table.insert(nodes, node)
+end
+
+table.sort(nodes, function(a, b)
+    return a.name < b.name
+end)
+
+local path = F"{Application.dataPath}/_DynamicAssets/B3WorkSpace/NodeConfig.json"
+File.WriteAllText(path, json.encode(nodes), CS.System.Text.UTF8Encoding(false))
+CS.UnityEditor.AssetDatabase.Refresh()
+
+print(F"Export to: {path}")

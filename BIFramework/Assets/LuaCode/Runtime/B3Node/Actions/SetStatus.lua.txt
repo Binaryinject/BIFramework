@@ -1,0 +1,40 @@
+-- SetStatus
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "SetStatus",
+    type = "Action",
+    desc = "设置状态值",
+    args = {
+        { "property", "string", "状态属性" },
+        { "setString", "string?", "字符串值" },
+        { "setNumber", "string?", "数字值" },
+        { "setBool", "boolean?", "布尔值" },
+    },
+    input = { "目标" }
+}
+
+function M.run(node, env, target)
+    if target then
+        if node.args.setString then
+            target[node.args.property] = node.args.setString
+        elseif node.args.setNumber then
+            target[node.args.property] = tonumber(node.args.setNumber)
+        elseif node.args.setBool ~= nil then
+            target[node.args.property] = node.args.setBool
+        end
+    elseif env.owner[node.args.property] ~= nil then
+        if node.args.setString then
+            env.owner[node.args.property] = node.args.setString
+        elseif node.args.setNumber then
+            env.owner[node.args.property] = tonumber(node.args.setNumber)
+        elseif node.args.setBool ~= nil then
+            env.owner[node.args.property] = node.args.setBool
+        end
+    end
+    return bret.SUCCESS
+end
+
+return M

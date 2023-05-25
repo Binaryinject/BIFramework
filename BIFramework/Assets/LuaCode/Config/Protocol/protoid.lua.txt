@@ -1,0 +1,1704 @@
+--================================AUTO GENERATE FILE DO NOT EDIT================================
+
+---@class pb.Achieve_GetAwards_CS 收取成就奖励
+---@field id number[] 选择领取的奖励 
+
+---@class pb.Achieve_GetAwards_SC 收取成就奖励
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Achieve_QueryAwards_SC 查询已领取的成就奖励
+---@field ids number[] 已领取的奖励 
+
+---@class pb.Activity_Drop_SC 物候掉落
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Adventure_Start_CS 开始冒险
+---@field map pb.Map 新地图 
+
+---@class pb.Adventure_Start_SC 开始冒险
+---@field code string 
+
+---@class pb.Adventure_Stop_CS 结束冒险
+---@field map pb.Map 新地图 
+
+---@class pb.Adventure_Stop_SC 结束冒险
+---@field code string 
+
+---@class pb.Adventure_Exit_SC 终止冒险
+---@field code string 
+
+---@class pb.Adventure_ChangeMap_CS 切换冒险地图
+---@field map pb.Map 新地图 
+
+---@class pb.Adventure_ChangeMap_SC 切换冒险地图
+---@field code string 
+---@field monsters pb.Monster[] 冒险地图怪物 
+---@field players pb.RoomPlayer[] 地图已有的玩家 
+
+---@class pb.Adventure_UpdateMapPlayer_Sync 更新冒险地图中的玩家的广播
+---@field map pb.Map 新地图 
+---@field players pb.RoomPlayer[] 去到新地图的玩家 
+
+---@class pb.Adventure_GetPlayer_CS 获取指定冒险玩家信息
+---@field id number 玩家ID 
+
+---@class pb.Adventure_GetPlayer_SC 获取指定冒险玩家信息
+---@field player pb.RoomPlayer 
+
+---@class pb.Adventure_Position_CS 位置
+---@field position pb.Position 
+
+---@class pb.Adventure_Position_SC 位置
+---@field code string 
+
+---@class pb.Adventure_Position_Sync 位置的广播
+---@field positions pb.Position[] 
+
+---@class pb.Adventure_RoleState_CS 角色状态
+---@field state pb.RoleState 
+
+---@class pb.Adventure_RoleState_SC 角色状态
+---@field code string 
+
+---@class pb.Adventure_RoleState_Sync 角色状态的广播
+---@field state pb.RoleState 
+
+---@class pb.Adventure_ItemState_CS 物品状态
+---@field state pb.ItemState 
+
+---@class pb.Adventure_ItemState_SC 物品状态
+---@field code string 
+
+---@class pb.Adventure_ItemState_Sync 物品状态的广播
+---@field state pb.ItemState 
+
+---@class pb.Adventure_Buff_CS BUFF
+---@field buff pb.Buff 
+
+---@class pb.Adventure_Buff_SC BUFF
+---@field code string 
+---@field hp number 受BUFF者的剩余血量 
+
+---@class pb.Adventure_Buff_Sync BUFF的广播
+---@field buff pb.Buff 
+---@field hp number 受BUFF者的剩余血量 
+
+---@class pb.Adventure_Attack_CS 攻击
+---@field attack pb.Attack 
+
+---@class pb.Adventure_Attack_SC 攻击
+---@field code string 
+---@field hp number 被攻击者的剩余血量 
+
+---@class pb.Adventure_Drop_Sync 掉落广播
+---@field playerId number 打死怪物的玩家 
+---@field friendship number 打死虚影获得的友情值 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Adventure_AddMonsters_Sync 新增怪物的广播
+---@field mapId string 
+---@field Monsters pb.Monster[] 掉落物品 
+
+---@class pb.Adventure_Attack_Sync 攻击的广播
+---@field attack pb.Attack 
+---@field hp number 被攻击者的剩余血量 
+
+---@class pb.Adventure_Shoot_CS 射击
+---@field shoot pb.Shoot 
+
+---@class pb.Adventure_Shoot_SC 射击
+---@field code string 
+
+---@class pb.Adventure_Shoot_Sync 射击的广播
+---@field shoot pb.Shoot 
+
+---@class pb.Battle_Start_SC 开始
+---@field code string 
+
+---@class pb.Battle_Start_Sync 开始的广播
+---@field code string 
+
+---@class pb.Battle_Ready_SC 准备完成
+---@field code string 
+
+---@class pb.Battle_Beady_Sync 准备完成的广播
+---@field code string 
+
+---@class pb.Battle_ChangeMap_CS 切换战斗地图
+---@field map pb.Map 
+
+---@class pb.Battle_ChangeMap_SC 切换战斗地图
+---@field code string 
+
+---@class pb.Battle_ChangeMap_Sync 切换战斗地图的广播
+---@field map pb.Map 
+---@field monsters pb.Monster[] 战斗地图怪物 
+
+---@class pb.Battle_Position_CS 位置
+---@field position pb.Position 
+
+---@class pb.Battle_Position_SC 位置
+---@field code string 
+
+---@class pb.Battle_Position_Sync 位置的广播
+---@field positions pb.Position[] 
+
+---@class pb.Battle_RoleState_CS 角色状态
+---@field state pb.RoleState 
+
+---@class pb.Battle_RoleState_SC 角色状态
+---@field code string 
+
+---@class pb.Battle_RoleState_Sync 角色状态的广播
+---@field state pb.RoleState 
+
+---@class pb.Battle_ItemState_CS 物品状态
+---@field state pb.ItemState 
+
+---@class pb.Battle_ItemState_SC 物品状态
+---@field code string 
+
+---@class pb.Battle_ItemState_Sync 物品状态的广播
+---@field state pb.ItemState 
+
+---@class pb.Battle_Buff_CS BUFF
+---@field buff pb.Buff 
+
+---@class pb.Battle_Buff_SC BUFF
+---@field code string 
+---@field hp number 受BUFF者的剩余血量 
+
+---@class pb.Battle_Buff_Sync BUFF的广播
+---@field buff pb.Buff 
+---@field hp number 受BUFF者的剩余血量 
+
+---@class pb.Battle_Attack_CS 攻击
+---@field attack pb.Attack 
+
+---@class pb.Battle_Attack_SC 攻击
+---@field hp number 被攻击者的剩余血量 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Battle_Attack_Sync 攻击的广播
+---@field attack pb.Attack 
+---@field hp number 被攻击者的剩余血量 
+
+---@class pb.Battle_Shoot_CS 射击
+---@field shoot pb.Shoot 
+
+---@class pb.Battle_Shoot_SC 射击
+---@field code string 
+
+---@class pb.Battle_Shoot_Sync 射击的广播
+---@field shoot pb.Shoot 
+
+---@class pb.Battle_Completed_SC 结算
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Battle_Completed_Sync 结算的广播
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Userdata 用户本地缓存信息
+---@field channel number 渠道：1-null，2-Leiting，3-Taptap，4-GameCenter，5-GooglePlay，6-Facebook 
+---@field platform number 平台：1-Android，2-IPhone, 3-Windows，4-OSX，5-PS，6-Switch 
+---@field accountId string 用户SID 
+---@field accountName string 用户名字 
+---@field playerName string 玩家名字 
+---@field playerId string 玩家ID 
+---@field loginDays number 连续登录天数 
+---@field helpFlag table<string, boolean> 帮助Flag 
+
+---@class pb.PhotoDetail 
+---@field type number 主体类型（hero = 1, npc = 2, monster = 3, item = 4） 
+---@field id string 主体ID 
+---@field name string 主体名字 
+---@field action string 主体动作 
+---@field map string 地图ID 
+
+---@class pb.Clothes_WearClothes_CS 穿戴服装
+---@field clothes pb.Clothes[] 
+---@field unDressId number[] 
+---@field color number[] 颜色没有改变不传
+---@field scene number 场景: 0-默认，1-广场，2-探索 
+
+---@class pb.Clothes_WearClothes_SC 穿戴服装回包
+---@field code string 
+
+---@class pb.UpdateClothes_Sync 玩家服装信息更新的广播
+---@field id number 玩家ID 
+---@field clothes pb.Clothes[] 更新后的服装信息 
+
+---@class pb.Clothes_GetClothes_CS 获得服装  可以通过购买或者裁缝  一个接口
+---@field Ids number[] 衣服Id
+
+---@class pb.Clothes_GetClothes_SC 获得服装回包
+---@field clothes pb.Clothes[] 
+---@field limit pb.ClothesLimit[] 衣服获得之后 限购信息 
+---@field items table<number, number> 刷新背包 
+
+---@class pb.Clothes_GetClotheLimit_SC 已经被限购衣服获取
+---@field limit pb.ClothesLimit[] 
+
+---@class pb.Session_Connect_CS 绑定session
+---@field sid string 
+
+---@class pb.Session_Connect_SC 绑定session
+---@field code string 
+---@field msg string 
+
+---@class pb.Exchange_Consignment_CS 寄售上架
+---@field type number 寄售物品类型 (纯道具，块） 
+---@field price number 寄售总价 数量 * 【单价（限制在2倍~10倍）】 
+---@field items table<number, number> ID ：数量 
+
+---@class pb.Exchange_Consignment_SC 寄售上架
+---@field price number 
+
+---@class pb.Exchange_Sell_CS 请求交易
+---@field id string 寄售物品的id 
+
+---@class pb.Exchange_Sell_SC 请求交易回执
+---@field code number 寄售状态 
+
+---@class pb.Exchange_CancelSell_CS 取消交易
+---@field id string 寄售物品的id 
+
+---@class pb.Exchange_CancelSell_SC 取消交易回执
+---@field code number TradeState 交易状态 SUCCESS = 0 FAIL    = 1 TIMEOUT = 2 
+
+---@class pb.Exchange_QueryByName_CS TODO 这个以下的路由都得改了 按名称查询 类型排序
+---@field type number optional*OrderByType 根据类型排序 PRICE     = 0 TIMESTAMP = 1 TYPE      = 2 QUALITY   = 3 默认按价格升序 
+---@field goods_name string 物品名称 
+
+---@class pb.Exchange_QueryByName_SC 按类型查询交易回执
+---@field code number TradeState 交易状态 SUCCESS = 0 FAIL    = 1 TIMEOUT = 2 
+
+---@class pb.Exchange_QueryBySelectId_CS 按选取类型Id查询交易
+---@field goods_id number OrderByType 根据类型排序 PRICE     = 0 TIMESTAMP = 1 TYPE      = 2 QUALITY   = 3 默认按价格升序 选中的物品类型（目前设想是按照某一个类型去分页查询) 
+---@field last_id string 当前分页展示的最后一条数据，当不存在参数的时候，表示不传递参数，表示第一页 
+---@field type string QueryType 查询类型 可优化
+---@field sort_type boolean optional*排序方式，true：升序，false：降序 
+
+---@class pb.Exchange_QueryBySelectId_SC 按选取类型Id查询交易回执
+---@field code number 
+---@field orders pb.Order[] 会分页处理的 
+
+---@class pb.Exchange_QueryPlayerStatus_SC 按玩家查询定点交易回执
+---@field code number 
+---@field orders pb.Order[] 
+
+---@class pb.Order 订单表 与数据库表一致
+---@field player_id number 
+---@field price number 
+---@field type number 
+---@field id string 订单id 
+---@field status number 
+---@field upload number 上架时间 交易状态 
+---@field items table<number, number> 
+
+---@class pb.Player_Fabricating_CS 请求 制作 Fabricating
+---@field id number 想通过图纸制作的物品ID 
+---@field num number 想通过图纸制作的物品数量 
+---@field slot_id number 选择的制作槽位ID 
+---@field material table<number, number> 选中的可变素材ID组 ID:数量 有可变素材选中时才传 
+
+---@class pb.Player_Fabricating_SC 回复 制作 Fabricating
+---@field total number 当前请求的制作槽下已经制作的数量 
+---@field startTime number 开始时间 
+---@field items table<number, number> 物品 
+
+---@class pb.Player_QueryFabricatingStatus_CS 请求 查询制作槽信息 QueryFabricatingStatus
+---@field id number 实际上没用，player id 
+
+---@class pb.Player_QueryFabricatingStatus_SC 回复 返回制作槽信息 QueryFabricatingStatus
+---@field status table<number, pb.MapFieldEntry> 制作槽信息, entry由多个不同完成时间的堆叠组组成 
+
+---@class pb.Player_GetFabricationInSlot_CS 请求 收取制作结果请求
+---@field slot_id number 要收获的制作槽ID 
+
+---@class pb.Player_GetFabricationInSlot_SC 回复 收取制作结果
+---@field fab_part pb.FabPart 收取的物品会放到背包中 服务回复变化的物品id:nums 客户端直接更新显示数量 
+---@field fab_equip pb.FabEquip 
+---@field fab_bead pb.FabBead 
+---@field fab_block pb.FabBlock 
+
+---@class pb.Player_CancelFabricationInSlot_CS 请求 取消制作槽
+---@field slot_id number 要取消的制作槽ID 
+
+---@class pb.Player_CancelFabricationInSlot_SC 回复 取消操作涉及的物品id：nums
+---@field fab_part pb.FabPart 取消的物品会放到背包中 服务回复变化的物品id:nums 客户端直接更新显示数量 
+---@field fab_equip pb.FabEquip 
+---@field fab_bead pb.FabBead 
+---@field fab_block pb.FabBlock 
+
+---@class pb.Farm_Farming_CS 播种
+---@field id number 种子ID 
+---@field seat number 播种的位置 
+
+---@class pb.Farm_Farming_SC 播种
+---@field code string 
+---@field startTime number 
+
+---@class pb.Farm_Fertilize_CS 施肥
+---@field seat number 播种的位置 
+---@field fertilize table<number, number> 施肥的材料 
+---@field overFertilizeId number 最后一个超过限制的肥料 
+
+---@class pb.Farm_Fertilize_SC 施肥
+---@field code string 
+---@field packSacFertilize table<number, number> 背包的肥料 
+
+---@class pb.Farm_Harvest_CS 收获
+---@field seat number 指定位置 
+
+---@class pb.Farm_Harvest_SC 收获
+---@field code string 唯一标识 
+---@field crop pb.Crop optional*新种子 
+---@field props table<number, number> 产物 
+---@field seat number[] 授粉位置 
+---@field packSackProps table<number, number> 背包的产物 
+
+---@class pb.Farm_CancelHarvest_CS 取消收获农作物
+---@field seat number 指定位置 
+
+---@class pb.Farm_CancelHarvest_SC 取消收获农作物
+---@field code string 
+
+---@class pb.Food_NormalCook_CS Food_Cook_CS 食谱烹饪请求
+---@field cookbook_id number 食谱id 
+---@field nums number 制作数量 
+
+---@class pb.Food_NormalCook_SC Food_Cook_SC 食谱烹饪回复
+---@field items table<number, number> item背包变化id:nums 
+---@field food table<number, number> 食物背包变化id:nums 
+
+---@class pb.Food_CreativeCook_CS Food_Cook_CS 烹饪请求
+---@field ingredients number[] 选中的配料id 数量恒定1 
+
+---@class pb.Food_CreativeCook_SC Food_Cook_SC 烹饪回复
+---@field items table<number, number> item背包变化id:nums 
+---@field food table<number, number> 食物背包变化id:nums 
+---@field ids number[] 新增食谱 可能解锁新食谱 判断是否为空 
+
+---@class pb.Food_QueryCookBook_SC Food_QueryCookBook_SC 查询食谱回复
+---@field food_ids number[] 食谱id 
+
+---@class pb.Player_EatFood_CS 使用食物
+---@field id number 食物ID 
+---@field num number 数量 
+---@field scene number 场景: 0-默认，1-广场，2-探索，3-副本 
+
+---@class pb.Player_EatFood_SC 使用食物
+---@field food table<number, number> 刷新后的食物背包 
+---@field buff pb.FoodBuff 
+
+---@class pb.EatFood_Sync 玩家使用食物的广播
+---@field id number 玩家ID 
+---@field hp number 
+
+---@class pb.Player_Info_CS lua 不支持 emum 个人展示信息
+---@field id number 玩家id 
+
+---@class pb.Player_Info_SC 
+---@field id number 玩家id 
+---@field name string 玩家名字 
+---@field head number 头像Id 
+---@field photo string 玩家证件照urL 
+---@field picture string 家园展示截图URL 
+---@field sid24 number 入住24节气Id 
+---@field ip string ip 
+---@field badge number[] 展示的徽章 
+---@field bgSkin number 背景皮肤Id 
+---@field socialLv number 社交等级 
+---@field heartSum number 社交经验值、绿心总数、好友等级的总和 
+---@field envLv number 环境等级 
+---@field envExp number 环境经验值 
+---@field playerLv number 玩家等级、声望等级、账号等级 
+---@field playerExp number 声望值、账号经验值 
+---@field prosperityLv number 村子等级、繁荣等级 
+---@field construction number 建设值，用于村子升级 
+---@field npcNum number 村民个数 
+---@field friendNum number 好友个数 
+---@field favorLv number 和我的好感等级 
+---@field favorExp number 和我的好感经验值 
+
+---@class pb.Player_DoFriend_CS 添加好友和删除好友
+---@field id number 对方玩家id 
+---@field action number 0 删除好友 1 添加好友 
+
+---@class pb.Player_DoFriend_SC 
+---@field id number 对方玩家id 
+---@field status number 关系 0、陌生人 1、好友 2、关注 3、拉黑 
+
+---@class pb.Player_DoBlacklist_CS 拉入黑名单和移除黑名单
+---@field id number 对方玩家id 
+---@field action number 0 移除黑名单 1 加入黑名单 
+
+---@class pb.Player_DoBlacklist_SC 
+---@field id number 对方玩家id 
+---@field status number 关系 0、陌生人 1、好友 2、关注 3、拉黑 
+
+---@class pb.Player_Friendlist_SC 好友列表
+---@field friendList pb.Friend[] 好友列表 
+
+---@class pb.Player_DoFollow_CS 特别关注和取消关注
+---@field id number 对方玩家id 
+---@field action number 0 取消关注 1 添加关注 
+
+---@class pb.Player_DoFollow_SC 
+---@field id number 对方玩家id 
+---@field status number 关系 0、陌生人 1、好友 2、关注 3、拉黑 
+
+---@class pb.Player_UpdateInfo_CS 更新我的个人展示信息
+---@field flag number 更新标志 2、更新头像 3、更新皮肤 4、证件照url 5、更新徽章 
+---@field head string optional*头像Id 
+---@field bgSkin number optional*背景皮肤Id 
+---@field photo string optional*证件照urL 
+---@field badge number[] 展示的徽章 
+
+---@class pb.Player_UpdateInfo_SC 
+---@field flag number 更新成功标志 2、更新头像 3、更新皮肤 4、证件照url 4、更新徽章 
+
+---@class pb.Account_Login_CS 账号登录
+---@field channel number 渠道：1-null，2-Leiting，3-Taptap，4-GameCenter，5-GooglePlay，6-Facebook 
+---@field platform number 平台：1-Android，2-IPhone, 3-Windows，4-OSX，5-PS，6-Switch 
+---@field user_id string 渠道用户ID 
+---@field user_name string 渠道用户名 
+---@field token string 渠道校验Token 
+---@field device pb.SystemInfo 设备信息 
+---@field solar_id number optional*TestOnly 用于测试的节气时间段id 指定一个节气时间段id solar_id不存在时服务器返回正常的节气时间段id组，否则返回指定的节气时间段id 
+
+---@class pb.Account_Login_SC 账号登录
+---@field code string 返回码 
+---@field player pb.Player optional*角色数据 
+---@field solar_term_ids number[] 当前满足的节气编号 
+
+---@class pb.Account_Logout_SC 账号登出
+---@field code string 返回码 
+
+---@class pb.Account_LoginBot 机器人登录
+---@field id number 机器人Id 
+
+---@class pb.Mail_GetGameMails_SC 获取所有游戏邮件
+---@field gameMails table<string, pb.GameMail> 系统全服邮件 Key ID 
+
+---@class pb.Mail_GetNewGameMails_SC 获取新游戏邮件
+---@field gameMails table<string, pb.GameMail> 系统全服邮件 Key ID 
+
+---@class pb.Mail_GetPlayerMails_SC 获取玩家邮件
+---@field playerMails table<string, pb.PlayerMail> 系统全服邮件 Key ID 
+
+---@class pb.Mail_ReadGameMail_CS 已读游戏邮件
+---@field id string 
+
+---@class pb.Mail_ReadGameMail_SC 已读游戏邮件
+---@field rewards table<number, number> 阅读状态   1 已读未领取（背包满了不能领取）  2 已没有奖励  3 已读已领取 获得的奖励
+---@field readStatus number 
+
+---@class pb.Mail_ReadPlayerMail_CS 已读玩家邮件
+---@field id string 
+
+---@class pb.ReadPlayerMail_SC 已读玩家邮件
+---@field rewards table<number, number> 阅读状态   1 已读未领取（背包满了不能领取）  2 已没有奖励  3 已读已领取 获得的奖励
+---@field readStatus number 
+
+---@class pb.Mail_GetMailRewards_CS 领取邮件奖励
+---@field id string id == "-1" 时，相当于 一键领取 
+
+---@class pb.Mail_GetMailRewards_SC 领取邮件奖励
+---@field rewards table<number, number> 系统全服邮件 Key ID 获得的奖励 
+
+---@class pb.NormalShop_Get_SC 获取普通商店的商品表
+---@field items table<number, pb.Goods> 商品表(商品ID|详情) 
+---@field time number 服务器时间 
+
+---@class pb.NormalShop_Buy_CS 购买商品
+---@field id number 商品id 
+---@field count number 商品数量 
+---@field orderId number 订单号（由第三方的SDK返回） 
+
+---@class pb.NormalShop_Buy_SC 购买商品
+---@field count number 剩余可购买数量 
+---@field items table<number, number> 刷新后的道具表(道具ID|数量) 
+---@field time number 服务器时间 
+
+---@class pb.OssMap_Get_SC ossmap数据
+---@field maps pb.MapInfo[] 已经上传所有地图 
+
+---@class pb.MapInfo 
+---@field url string 地图地址
+---@field md5 string 地图MD5
+---@field mapName string 地图名字  地图ID
+---@field stat number 地图状态 1：上传中  2:已经上传完成
+---@field time number 地图上传时间
+
+---@class pb.Permit_GetAwards_CS 收取通行证奖励
+---@field normals number[] 选择领取的普通奖励 
+---@field activates number[] 选择领取的高级奖励 
+
+---@class pb.Permit_GetAwards_SC 收取通行证奖励
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Permit_QueryAwards_SC 查询已领取的通行证奖励
+---@field normals number[] 已领取的普通奖励 
+---@field activates number[] 已领取的高级奖励 
+---@field activity number 通行证活动 
+---@field unlock boolean 是否已解锁高级奖励 
+
+---@class pb.Player_Create_SC 创建
+---@field player pb.Player 
+
+---@class pb.Player_ChangeName_CS 修改名字
+---@field name string 名字 
+
+---@class pb.Player_ChangeName_SC 修改名字
+---@field name string 名字 
+
+---@class pb.Player_GetServerTime_SC 获取服务器时间
+---@field code string 
+---@field time number 
+
+---@class pb.Player_GetNpcFavorInfo_CS 获取Npc好感详情
+---@field id number Npc id 
+
+---@class pb.Player_GetNpcFavorInfo_SC 获取Npc好感详情
+---@field exp number 好感值 
+---@field level number 好感等级 
+---@field gifts pb.FavorGift[] 好感物信息数组 
+
+---@class pb.Player_GiftGiving_CS 赠送Npc礼物
+---@field npcId number Npc id 
+---@field giftId number 赠送礼物 id 
+---@field count number 赠送礼物数量 
+---@field type number 赠送的礼物类型 
+
+---@class pb.Player_GiftGiving_SC 赠送Npc礼物
+---@field roleFavorExp number 好感度经验 
+---@field roleFavorLevel number 好感度等级 
+---@field rewardType number 奖励类型 
+---@field favorRewards table<number, number> [奖励id--数量] 
+
+---@class pb.Player_GetPackSack_SC 获取背包
+---@field code string 
+---@field packsack pb.PackSack 
+
+---@class pb.Player_RetrieveSummary_SC 找回总览
+---@field items pb.RetrieveItem[] 物品信息数组 
+
+---@class pb.Player_Retrieve_CS 找回物品
+---@field item table<number, number> [物品id--数量] 
+---@field totalPrice number 申请回收的总金额 
+
+---@class pb.Player_Retrieve_SC 找回物品
+---@field state number 回收结果: 0: 回收失败  1: 回收成功 
+
+---@class pb.Player_UpgradeLevel_Sync 升级推送
+---@field type number 等级类型 (1、声望等级；2、环境等级) 
+---@field lv number 当前等级 
+---@field exp number 当前等级经验 
+
+---@class pb.Player_UnlockFunc_Sync 功能解锁推送
+---@field unlocks number[] 新解锁的功能 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Player_GetLevelAwards_CS 收取声望奖励 请求
+---@field selectLevel number 选择领取的等级 
+
+---@class pb.Player_GetLevelAwards_SC 收取声望奖励 回复
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Player_QueryLevelAwardStatus_SC 查询声望等级奖励
+---@field status table<number, number> level : status  1 已领取 2 未领取 
+
+---@class pb.Player_ClothesBox_CS 开服装礼盒
+---@field boxes table<number, number> 礼盒表<配置ID, 数量> 
+
+---@class pb.Player_ClothesBox_SC 开服装礼盒
+---@field clothes pb.Clothes[] 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Player_EquipBox_CS 开装备礼盒
+---@field boxes table<number, number> 礼盒表<配置ID, 数量> 
+
+---@class pb.Player_EquipBox_SC 开装备礼盒
+---@field equips pb.Equip[] 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Player_BeadBox_CS 开珠子礼盒
+---@field boxes table<number, number> 礼盒表<配置ID, 数量> 
+
+---@class pb.Player_BeadBox_SC 开珠子礼盒
+---@field beads pb.Bead[] 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Player_DrawBox_CS 开图纸礼盒
+---@field boxes table<number, number> 礼盒表<配置ID, 数量> 
+
+---@class pb.Player_DrawBox_SC 开图纸礼盒
+---@field draws pb.Draw[] 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Player_CropBox_CS 开农畜物礼盒
+---@field boxes table<number, number> 礼盒表<配置ID, 数量> 
+
+---@class pb.Player_CropBox_SC 开农畜物礼盒
+---@field crops pb.Crop[] 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Player_NormalBox_CS 开普通礼盒
+---@field boxes table<number, number> 礼盒表<配置ID, 数量> 
+
+---@class pb.Player_NormalBox_SC 开普通礼盒
+---@field items table<number, number> 刷新后的道具表(道具ID|数量) 
+
+---@class pb.Player_BlockBox_CS 开地块盲盒
+---@field boxes table<number, number> 礼盒表<配置ID, 数量> 
+
+---@class pb.Player_BlockBox_SC 开地块盲盒
+---@field blocks table<number, number> 刷新后的道地块表(地块ID|数量) 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Player_Guide_CS 完成引导
+---@field id number 
+
+---@class pb.Player_Guide_SC 完成引导回包
+---@field guides number[] 
+
+---@class pb.CloseRpc 1.room.room.onclose 2.game.player.onclose
+---@field playerId number 退出的玩家 
+
+---@class pb.GetGamePlayerRpc 
+---@field playerId number 玩家Id 
+
+---@class pb.GamePlayer 
+---@field code string 
+---@field playerData string 玩家数据 json 
+
+---@class pb.PushGamePlayer 
+---@field playerId number 
+---@field playerData string 玩家数据 json 
+
+---@class pb.PushGamePlayerRpc 
+---@field code string 
+
+---@class pb.Response_SC 
+---@field code string 
+---@field msg string 
+
+---@class pb.ChangeClothesRpc 
+---@field playerId number 
+---@field scene number 
+---@field clothesData string 
+---@field colorData string 
+
+---@class pb.TaskStageRpc 
+---@field playerId number 
+---@field taskStage table<number, number> 
+
+---@class pb.PlayerItemsGetRpc 
+---@field items table<number, number> 
+
+---@class pb.TaskCompleteRpc 
+---@field playerId number 
+---@field items table<number, number> 
+---@field playerLv number optional*
+---@field enLv number optional*
+---@field taskId number 
+
+---@class pb.SyncTaskRpc 
+---@field playerId number 
+---@field SyncTaskId number 
+---@field completeTaskId number 
+---@field TaskStage table<number, number> 
+
+---@class pb.EatFoodRpc 
+---@field playerId number 
+---@field scene number 
+---@field foodId number 
+---@field num number 
+---@field buffData string 
+
+---@class pb.DropItemsRpc 
+---@field playerId number 
+---@field items table<number, number> 
+
+---@class pb.Shop_QueryAllGoods2_CS TODO 商店需求变了，需要重新设计，暂时不变 人民币购买的商品，比如钻石一次性只可以购买一个 其他的商品，比如体力，可以购买多个 
+---@field player_id number 玩家id 
+
+---@class pb.Shop_QueryAllGoods2_SC 查询时 返回所有限购商品的生成记录时间 由客户端计算(剩余时间) = deadline - 生成记录时间
+---@field items table<number, pb.entry2> id : entry 
+
+---@class pb.entry2 
+---@field create_time_stamp number 没有发生购买行为时生成记录的时间戳，用于倒计时 
+---@field buying_nums number 商品记录的购买数量 
+---@field first_time_stamp number 第一次购买的时间戳 
+---@field end_time_stamp number 截止时间 
+---@field is_buy boolean 是否购买过 0:未购买 1:购买过 购买过 first_time_stamp 和 end_time_stamp 才有意义 
+
+---@class pb.Shop_BuyGoods_CS 购买商品 请求
+---@field goods_id number 商品id 
+---@field nums number 商品数量 演示版本 RMB付费的商品一次只能购买一个这个字段不要传值 
+
+---@class pb.Shop_BuyGoods_SC 购买商品 回复
+---@field items table<number, number> 背包变化 
+---@field res_nums number 剩余可购买商品数量 提审版本 RMB付费的商品这个字段没意义 注意类型区分 
+---@field first_buying_time_stamp number 第一次购买时间 只能一次买一个 提审版本 RMB付费的商品这个字段没意义 注意类型区分 
+---@field end_time_stamp number 截至时间 
+
+---@class pb.ActivityShop_Exchange_CS 兑换请求
+---@field activity_id number 
+---@field goods_id number 兑换的物品id 
+---@field nums number 兑换的数量 
+
+---@class pb.ActivityShop_Exchange_SC 兑换响应
+---@field items table<number, number> 变化的物品 id : nums  也包含节气活动的货币 读activity page表来取货币id：nums 
+---@field parts table<number, number> 兑换的物品 零件 块 
+---@field blocks table<number, number> 
+
+---@class pb.ActivityShop_QueryStatus_CS 普通商店状态查询
+---@field activity_id number 活动兑换id 
+
+---@class pb.ActivityShop_QueryStatus_SC 普通兑换相应
+---@field unlock_id number[] unlock_id 已解锁的活动id 
+---@field items table<number, number> Items 道具的限制信息 id : nums Items id 已经购买的nums 
+---@field coins table<number, number> 对应节气活动的货币数量 
+
+---@class pb.ActivityShop_OneByOneExchange_CS 累进兑换请求
+---@field activity_id number 对话进入的活动id 
+---@field goods_id number 提交的道具id 
+
+---@class pb.ActivityShop_OneByOneExchange_SC 累进兑换响应
+---@field status number 返回本次操作的物品的结果 (失败 : 1, 成功 : 已领取:2， 未领取:3) 
+---@field items table<number, number> 节气货币的变化 节气货币是一种道具 
+
+---@class pb.ActivityShop_GetUncollected_CS 收取累进兑换奖励请求
+---@field goods_id number 要收取的物品id 
+
+---@class pb.ActivityShop_GetUncollected_SC 收取累进兑换奖励响应
+---@field items table<number, number> 背包变化的道具数量 id ： nums 
+---@field blocks table<number, number> 
+---@field currency table<number, number> 
+---@field clothe pb.Clothes 
+
+---@class pb.ActivityShop_QueryOneByOneResById_CS 累进兑换商店状态查询
+---@field activity_id number 
+
+---@class pb.ActivityShop_QueryOneByOneResById_SC 累进兑换商店状态相应
+---@field items table<number, number> 累进兑换限制 
+
+---@class pb.SolarTermTime_SC 查询节气时间段
+---@field id number[] 对应时间段的节气活动id 
+
+---@class pb.Square_Match_CS 广场匹配
+---@field type number 广场类型 
+---@field coord number optional*指定出生地块 
+
+---@class pb.Square_Match_SC 广场匹配
+---@field square pb.Square 
+
+---@class pb.Square_Position_CS 广场玩家位置
+---@field position pb.Position 
+
+---@class pb.Square_Position_SC 广场玩家位置
+---@field code string 
+
+---@class pb.Square_Position_Sync 广场玩家位置的广播
+---@field positions pb.Position[] 
+
+---@class pb.Square_RoleState_CS 广场角色状态
+---@field state pb.RoleState 
+
+---@class pb.Square_RoleState_SC 广场角色状态
+---@field code string 
+
+---@class pb.Square_RoleState_Sync 广场角色状态的广播
+---@field state pb.RoleState 
+
+---@class pb.Square_Exit_SC 广场玩家退出
+---@field code string 
+
+---@class pb.Square_GetPlayer_CS 获取指定广场玩家信息
+---@field id number 玩家ID 
+
+---@class pb.Square_GetPlayer_SC 获取指定广场玩家信息
+---@field player pb.RoomPlayer 
+
+---@class pb.Square_Enter_Sync 玩家进入的广播
+---@field players pb.RoomPlayer[] 
+
+---@class pb.Square_Exit_Sync 玩家退出的广播
+---@field ids number[] 玩家ID 
+
+---@class pb.Square_AcceptTask_CS 接受任务
+---@field id number 
+
+---@class pb.Square_AcceptTask_SC 
+---@field code string 
+
+---@class pb.Vector3 本proto仅用来于定义数据结构
+---@field x number 
+---@field y number 
+---@field z number 
+
+---@class pb.Vector3Int 
+---@field x number 
+---@field y number 
+---@field z number 
+
+---@class pb.SystemInfo 硬件信息和Unity保持一致
+---@field deviceUniqueIdentifier string A unique device identifier. It is guaranteed to be unique for every device 
+---@field deviceModel string New: 设备型号 
+---@field deviceName string The user defined name of the device 
+---@field deviceType string Returns the kind of device the application is running on 
+---@field operatingSystem string Operating system name with version 
+---@field operatingSystemFamily string Returns the operating system family the game is running on 
+---@field systemMemorySize string New: 操作系统版本，单位MB 
+---@field processorType string Processor name 
+---@field processorFrequency string Processor frequency in MHz 
+---@field processorCount string Number of processors present 
+---@field graphicsDeviceVersion string The graphics API type and driver version used by the graphics device 
+---@field graphicsDeviceType string The graphics API type used by the graphics device 
+---@field graphicsDeviceName string The name of the graphics device 
+---@field graphicsMemorySize string Amount of video memory present 
+
+---@class pb.Player 玩家
+---@field id string ID 
+---@field info pb.Info 玩家展示信息 
+---@field user pb.User 账号信息 
+---@field packSack pb.PackSack 背包信息 
+---@field attribute pb.Attribute 角色属性 
+---@field farm table<number, pb.Farming> 正在培养的农畜物 
+---@field unlockedPotency number[] 已解锁的潜能 
+---@field unlockCookBook number[] 已解锁的烹饪图纸 
+---@field unlocks number[] 已解锁的功能 
+---@field clothes pb.Clothes[] 正在穿戴服装 
+---@field clotheGetLimit table<number, pb.ClotheGetLimit> 衣服限购 
+---@field color number[] 颜色 
+---@field guide number[] 引导 
+
+---@class pb.ClotheGetLimit 衣服限购
+---@field id number 生成ID 
+---@field time number 购买时间 
+---@field num number 已购买数量 
+
+---@class pb.Info 
+---@field status number 玩家状态 0、被禁用 1、在线 2、离线 3、副本中 
+---@field name string 玩家名字 
+---@field head string 头像Id 
+---@field photo string 玩家展示照片urL 
+---@field picture string 家园展示截图URL 
+---@field sid24 number 入住24节气Id 
+---@field ip string ip 
+---@field badge number[] 展示的徽章的id 
+---@field myBadge number[] 解锁的徽章 
+---@field bgSkin number 背景皮肤Id 
+---@field socialLv number 社交等级 
+---@field heartSum number 社交经验值、绿心总数、好友等级的总和 
+---@field envLv number 环境等级 
+---@field envExp number 环境经验值 
+---@field playerLv number 玩家等级、声望等级、账号等级 
+---@field playerExp number 声望值、账号经验值 
+---@field prosperityLv number 村子等级、繁荣等级 
+---@field construction number 建设值，用于村子升级 
+---@field npcNum number 村民个数 
+---@field friendNum number 好友个数 
+---@field npcFavorLv table<number, number> [npcId -- npc好感等级] 
+---@field npcFavorExp table<number, number> [npcId -- npc好感值] 
+---@field friendLvMap table<number, number> [好友Id -- 好友好感等级] 
+---@field friendExpMap table<number, number> [好友Id -- 好友好感值] 
+
+---@class pb.User 
+---@field deviceId string 设备id 
+---@field code string 第三方平台唯一标识码 
+---@field createTime number 账号创建时间 
+---@field loginTime number 最近一次登录时间 
+---@field loginDays number 连续登录天数 
+---@field playTotal number 消费支付的总额 
+---@field platform number 平台：1-Android，2-IPhone, 3-Windows，4-OSX，5-PS，6-Switch 
+---@field channel number 渠道：1-null，2-Leiting，3-Taptap，4-GameCenter，5-GooglePlay，6-Facebook 
+
+---@class pb.Attribute 角色属性
+---@field atk number 1 攻击 
+---@field def number 2 防御 
+---@field hp number 3 最大血量 
+---@field atkSpeed number 4 攻速 
+---@field speed number 5 移动速度 
+---@field crit number 6 暴击 
+---@field critRes number 7 抗暴 
+---@field critDamage number 8 爆伤 
+---@field critDamageRes number 9 爆伤抵抗 
+---@field eD number 10 增伤 
+---@field rD number 11 减伤 
+---@field atkRES number 12 物理抗性 
+---@field soundRES number 13 声音抗性 
+---@field fireRES number 14 火抗性 
+---@field iceRES number 15 冰抗性 
+---@field elecRES number 16 电抗性 
+---@field currHP number [当前血量] 
+
+---@class pb.RoomPlayer 房间玩家
+---@field id number ID 
+---@field name string 名字 
+---@field clothes pb.Clothes[] 正在穿戴服装 
+---@field feedbacks pb.Feedbacks[] 正在使用的反馈动作 
+---@field faceDatas pb.FaceData[] 正在使用的捏脸数据 
+---@field teamId string optional*队伍ID 
+---@field position pb.Position optional*位置信息 
+---@field toolId number optional*当前的工具ID 
+
+---@class pb.Friend 好友
+---@field id number ID 
+---@field playerLv number 玩家等级、声望等级 
+---@field head number 头像 
+---@field name string 名字 
+---@field favorLv number 和我的好感等级 
+---@field favorExp number 和我的好感经验值 
+---@field badge number[] 展示的徽章 
+---@field status boolean 状态 0:被禁用 1:在线 2:离线 3:副本中 
+---@field follow boolean 特别关注 
+
+---@class pb.Monster 怪物
+---@field id number 唯一ID 
+---@field gid number 所属块ID 
+---@field cid number 配置ID 
+---@field virtuals number[] 是否是虚影 
+
+---@class pb.Position 位置
+---@field type number 对象类型（hero = 1, npc = 2, monster = 3, item = 4） 
+---@field id number 对象ID（Item取所属格子ID） 
+---@field position pb.Vector3 位置 
+---@field rotation pb.Vector3 旋转（欧拉角） 
+---@field time number 耗时 
+
+---@class pb.RoleState 角色状态
+---@field type number 角色类型（hero = 1, npc = 2, monster = 3） 
+---@field id number 角色ID 
+---@field index number optional*动作序号 
+---@field layer number optional*动作层级 
+---@field speed number optional*动作速度 
+---@field mode number optional*交互模式 
+---@field tool number optional*工具ID 
+---@field grid number optional*被操作的Item的地块ID 
+---@field position pb.Vector3 optional*被操作的Item的位置 
+---@field rotation pb.Vector3 optional*被操作的Item的旋转（欧拉角） 
+---@field hide boolean optional*隐藏角色 
+
+---@class pb.ItemState 物品状态
+---@field id number 格子ID 
+---@field hp number optional*血量 
+---@field lock boolean optional*锁定状态 
+
+---@class pb.Map 地图
+---@field mapPath string 
+---@field coord number optional*
+
+---@class pb.Bullet 子弹基础信息
+---@field id number 子弹配置ID 
+---@field radius number 子弹半径 
+---@field speed number 子弹发射时的瞬时速度 
+---@field time number 子弹最大飞行时间 
+---@field gravity number 子弹重力 
+---@field collision number 子弹碰撞层 
+
+---@class pb.Shoot 射击
+---@field type number 攻击者类型（hero = 1, npc = 2, monster = 3） 
+---@field id number 攻击者ID 
+---@field bullet pb.Bullet 子弹信息 
+---@field startPos pb.Vector3 发射点 
+---@field endPos pb.Vector3 optional*射击点 
+---@field dirction pb.Vector3 optional*发射方向 
+
+---@class pb.Attack 攻击信息
+---@field attackType number 攻击者类型（hero = 1, npc = 2, monster = 3） 
+---@field attackId number 攻击者ID 
+---@field hitType number 被攻击者类型（hero = 1, npc = 2, monster = 3, item = 4） 
+---@field hitId number 被攻击者ID（item取所属格子ID） 
+
+---@class pb.Buff Buff
+---@field type number optional*释放者类型（hero = 1, npc = 2, monster = 3） 
+---@field id number optional*释放者ID 
+---@field cid number Buff的配置ID 
+
+---@class pb.FavorGift 好感物品
+---@field id number 配置ID 
+---@field count number 数量 
+---@field state number 状态码: 1: 小好感物  2: 中好感物  3: 大好感物 
+
+---@class pb.Bead 珠子
+---@field id number 
+---@field cid number 配置ID 
+---@field attributes table<number, number> 属性增幅[属性id - 增幅值] 
+---@field skill number 被动技能 
+
+---@class pb.Equip 装备
+---@field id number 背包中的生成id(IDGen) 
+---@field cid number 配置ID 
+---@field beads number[] 已装备珠子 
+---@field skill number optional*被动技能 
+
+---@class pb.Clothes 角色服装
+---@field id number 唯一ID 
+---@field cid number 配置ID 
+---@field type number 使用者类型（hero = 1, npc = 2） 
+---@field user number 使用者ID 
+
+---@class pb.Feedbacks 反馈动作
+---@field id number 唯一ID 
+---@field cid number 配置ID 
+---@field type number 使用者类型（hero = 1, npc = 2） 
+---@field user number 使用者ID 
+
+---@class pb.FaceData 捏脸数据
+---@field id number 唯一ID 
+---@field cid number 配置ID 
+---@field type number 使用者类型（hero = 1, npc = 2） 
+---@field user number 使用者ID 
+
+---@class pb.Crop 农畜物
+---@field id number 
+---@field cid number 配置ID 
+---@field entry number[] 
+
+---@class pb.Draw 图纸
+---@field id number 配置ID 
+---@field delicious boolean 图纸是否完美 
+---@field status number 图纸状态码: 0: 食材不足  1: 可做  2: 等级不足 4: 图纸编号错误 
+
+---@class pb.PackSack 背包
+---@field items table<number, number> 道具 
+---@field equips table<number, pb.Equip> 装备 
+---@field beads table<number, pb.Bead> 珠子 
+---@field crop table<number, pb.Crop> 农畜物 
+---@field blockBox table<number, number> 块盒 
+---@field food table<number, number> 食物 
+---@field pieces table<number, number> 地块 
+---@field clothes table<number, pb.Clothes> 角色服装 
+
+---@class pb.RetrItems 
+---@field id number 
+---@field amount number 
+---@field price number 
+---@field status number 
+
+---@class pb.RetrieveItem 找回物
+---@field id number 物品ID 
+---@field price number 找回价格 
+---@field count number 物品数量 
+---@field state number 找回状态码: 0: 不可找回  1: 可找回 
+
+---@class pb.Farming 种植
+---@field crop pb.Crop 当前农畜物信息
+---@field startTime number 播种的位置
+---@field plantTime number 剩余研究时间
+---@field Seat number 种植的位置
+---@field fertilizer table<number, number> 肥料的id和数量
+---@field pollination pb.Crop[] 传粉
+
+---@class pb.GameMail 系统邮件
+---@field id string 
+---@field title string 
+---@field content string 
+---@field rewards table<number, number> ID COUNT 
+---@field time number 
+
+---@class pb.PlayerMail 玩家邮件
+---@field id string 
+---@field title string 
+---@field content string 
+---@field rewards table<number, number> ID COUNT 
+---@field time number 
+---@field sender string 
+
+---@class pb.Square 广场
+---@field id string 
+---@field players pb.RoomPlayer[] 玩家ID和玩家信息
+
+---@class pb.TeamTask 队伍任务
+---@field id number 
+---@field cid number 配置ID 
+
+---@class pb.Team 队伍
+---@field id string 队伍ID 
+---@field players number[] 队伍玩家ID  在广场就获取广场的玩家  再探索获取探索玩家 
+---@field captain number 当前队伍队长 
+---@field tasks pb.TeamTask[] 队伍目标 
+
+---@class pb.FabPart 制作零件 fabricatingPart
+---@field result table<number, number> 通用背包 包含零件和货币 id : 数量 
+---@field add number 新增的数量 
+
+---@class pb.FabBlock 制作块
+---@field result table<number, number> 制作的块ID : 数量 
+---@field add number 新增的数量 
+
+---@class pb.FabEquip 制作装备
+---@field equip pb.Equip[] 装备属性及ID 
+
+---@class pb.FabBead 制作珠子
+---@field bead pb.Bead[] 珠子属性及ID 
+
+---@class pb.MapFieldEntry 查询制作
+---@field type number 一个制作槽，由多个不同完成时间的物品组成 
+---@field mid number 废弃 用不到了 
+---@field did number 
+---@field finished number 
+---@field start_time number 
+---@field total number 
+
+---@class pb.Task 任务信息
+---@field id number 
+---@field taskStage table<number, number> map<int32, int32> int32:任务阶段id   int32:当前任务进度 
+
+---@class pb.Goods 商品信息
+---@field id number 商品ID 
+---@field time number 上一次的购入时间 
+
+---@class pb.FoodBuff 食物信息
+---@field id number 食物ID  一个食物 可以对应1个或者2个buff  配置表查看 
+---@field time number 过期时间 
+
+---@class pb.ClothesLimit 服装限购  制作服装  购买服装  时间内限购
+---@field id number 
+---@field time number 购买的时间 
+---@field Num number 当前购买的数量 
+
+---@class pb.Task_GetTasks_SC 所有任务获取 建议登录请求一次
+---@field tasks table<number, pb.Task> map<int32, Task> int32:任务id   Task:任务详情 
+
+---@class pb.Task_NewTask_CS 新领取的任务
+---@field id number 
+---@field scene number 场景: 0-默认，1-广场，2-探索，3-副本 
+
+---@class pb.Task_NewTask_SC 
+---@field task pb.Task 
+
+---@class pb.Task_Complete_CS 完成任务 待定
+---@field id number 
+---@field scene number 场景: 0-默认，1-广场，2-探索，3-副本 
+
+---@class pb.Task_Complete_SC 
+---@field items table<number, number> 部分被刷新的背包数据 
+---@field newTasks pb.Task[] 
+
+---@class pb.Task_TaskStageUpdate_CS 更新阶段任务
+---@field taskId number 
+---@field taskStage table<number, number> 
+---@field scene number 场景: 0-默认，1-广场，2-探索，3-副本 
+
+---@class pb.Task_TaskStageUpdate_SC 
+---@field taskId number 
+---@field curTaskStage table<number, number> 当前任务进度 
+---@field nextTaskStage table<number, number> 下一个任务进度 
+---@field items table<number, number> 部分被刷新的背包数据 
+
+---@class pb.Team_Create_SC 创建队伍
+---@field team pb.Team 
+
+---@class pb.Team_Exit_SC 退出队伍
+---@field code string 
+
+---@class pb.Team_Invite_CS 发出队伍邀请
+---@field id number 被邀请者ID 
+
+---@class pb.Team_Invite_SC 发出队伍邀请
+---@field code string 是否发送邀请成功  200 
+
+---@class pb.Team_Invite_Sync 收到队伍邀请 (推送消息)
+---@field id number 邀请者ID 
+
+---@class pb.Team_AcceptInvite_CS 接受队伍邀请
+---@field id number 邀请者ID 
+---@field accept boolean 是否接受 
+
+---@class pb.Team_AcceptInvite_SC 接受队伍邀请
+---@field team pb.Team 
+
+---@class pb.Team_InviteRefused_Sync 队伍邀请被拒绝 (推送消息)
+---@field id number 拒绝者ID 
+
+---@class pb.Team_Join_CS 入队申请
+---@field id string 队伍ID 
+
+---@class pb.Team_Join_SC 入队申请
+---@field code string 
+
+---@class pb.Team_Join_Sync 收到入队申请 (推送消息)
+---@field id number 申请者ID 
+
+---@class pb.Team_AcceptJoin_CS 接受入队申请
+---@field accept number Tip: 1接受，2拒绝 
+---@field id number 申请者ID 
+
+---@class pb.Team_AcceptJoin_SC 接受入队申请
+---@field code string 
+
+---@class pb.Team_JoinRefused_Sync 入队申请被拒绝 (推送消息)
+---@field id number 拒绝者ID 
+
+---@class pb.Team_Enter_Sync 队员加入的广播
+---@field id number 队员ID 
+
+---@class pb.Team_Sync 队伍完整信息的广播/推送
+---@field team pb.Team 
+
+---@class pb.Team_Exit_Sync 队员退出的广播
+---@field id number 队员ID 
+
+---@class pb.Team_ChangeAdventureMap_Sync 队伍切换冒险地图的广播
+---@field map pb.Map 
+---@field monsters pb.Monster[] 冒险地图怪物 
+---@field players pb.RoomPlayer[] 地图已有的玩家 
+
+---@class pb.Team_EnterSquare_Sync 队伍切换广场的广播
+---@field square pb.Square 
+---@field coord number optional*指定出生地块 
+
+---@class pb.Team_ExitAdventure_Sync 队伍退出探索的广播
+---@field mapPath string 
+
+---@class pb.Team_Ready_CS 队伍确认出发
+---@field ready boolean 
+---@field mapId string 目的地 
+---@field coord number optional*指定的格子 
+
+---@class pb.Team_Ready_SC 队伍确认出发
+---@field code string 
+
+---@class pb.Team_Ready_Sync 队伍确认出发的广播
+---@field code string 
+---@field playerId number 拒绝的玩家的ID 
+---@field players number[] 已同意的玩家的ID 
+---@field mapId string 目的地 
+---@field coord number optional*指定的格子 
+
+---@class pb.Team_Start_SC 队伍探索或副本开始
+---@field code string 
+
+---@class pb.Team_Start_Sync 队伍探索或副本开始的广播
+---@field code string 
+
+---@class pb.UpdateTeam_Sync 玩家队伍信息更新的广播
+---@field players number[] 玩家ID 
+---@field teamId string optional*队伍ID 
+
+---@class pb.Team_CaptainChange_Sync 队长变更的广播
+---@field id number 新队长的ID 
+
+ProtoID = {
+    client_photodetail = "pb.PhotoDetail",
+    client_userdata = "pb.Userdata",
+    game_account_login_cs = "pb.Account_Login_CS",
+    game_account_login_sc = "pb.Account_Login_SC",
+    game_account_logout_cs = "null",
+    game_account_logout_sc = "pb.Account_Logout_SC",
+    game_achieve_getawards_cs = "pb.Achieve_GetAwards_CS",
+    game_achieve_getawards_sc = "pb.Achieve_GetAwards_SC",
+    game_achieve_queryawards_cs = "null",
+    game_achieve_queryawards_sc = "pb.Achieve_QueryAwards_SC",
+    game_activityshop_exchange_cs = "pb.ActivityShop_Exchange_CS",
+    game_activityshop_exchange_sc = "pb.ActivityShop_Exchange_SC",
+    game_activityshop_getuncollected_cs = "pb.ActivityShop_GetUncollected_CS",
+    game_activityshop_getuncollected_sc = "pb.ActivityShop_GetUncollected_SC",
+    game_activityshop_onebyoneexchange_cs = "pb.ActivityShop_OneByOneExchange_CS",
+    game_activityshop_onebyoneexchange_sc = "pb.ActivityShop_OneByOneExchange_SC",
+    game_activityshop_queryonebyoneresbyid_cs = "pb.ActivityShop_QueryOneByOneResById_CS",
+    game_activityshop_queryonebyoneresbyid_sc = "pb.ActivityShop_QueryOneByOneResById_SC",
+    game_activityshop_querystatus_cs = "pb.ActivityShop_QueryStatus_CS",
+    game_activityshop_querystatus_sc = "pb.ActivityShop_QueryStatus_SC",
+    game_activtyshop_querysolarterm_cs = "null",
+    game_activtyshop_querysolarterm_sc = "pb.ActivityShop_QuerySolarTerm_SC",
+    game_battle_changemap_cs = "pb.Battle_ChangeMap_CS",
+    game_battle_changemap_sc = "pb.Battle_ChangeMap_SC",
+    game_battle_changemap_sync = "pb.Battle_ChangeMap_Sync",
+    game_exchange_cancelsell_cs = "pb.Exchange_CancelSell_CS",
+    game_exchange_cancelsell_sc = "pb.Exchange_CancelSell_SC",
+    game_exchange_consignment_cs = "pb.Exchange_Consignment_CS",
+    game_exchange_consignment_sc = "pb.Exchange_Consignment_SC",
+    game_exchange_order = "pb.Exchange_QueryPlayerStatus_SC",
+    game_exchange_querybyname_cs = "pb.Exchange_QueryByName_CS",
+    game_exchange_querybyname_sc = "pb.Exchange_QueryByName_SC",
+    game_exchange_querybyselectid_cs = "pb.Exchange_QueryByType_CS",
+    game_exchange_querybyselectid_sc = "pb.Exchange_QueryByType_SC",
+    game_exchange_sell_cs = "pb.Exchange_Sell_CS",
+    game_mail_getgamemails_cs = "null",
+    game_mail_getgamemails_sc = "pb.Mail_GetGameMails_SC",
+    game_mail_getmailrewards_cs = "pb.Mail_GetMailRewards_CS",
+    game_mail_getmailrewards_sc = "pb.Mail_GetMailRewards_SC",
+    game_mail_getnewgamemails_cs = "null",
+    game_mail_getnewgamemails_sc = "pb.Mail_GetNewGameMails_SC",
+    game_mail_getplayermails_cs = "null",
+    game_mail_getplayermails_sc = "pb.Mail_GetPlayerMails_SC",
+    game_mail_readgamemail_cs = "pb.Mail_ReadGameMail_CS",
+    game_mail_readgamemail_sc = "pb.Mail_ReadGameMail_SC",
+    game_mail_readplayermail_cs = "pb.Mail_ReadPlayerMail_CS",
+    game_mail_readplayermail_sc = "pb.ReadPlayerMail_SC",
+    game_normalshop_buy_cs = "pb.NormalShop_Buy_CS",
+    game_normalshop_buy_sc = "pb.NormalShop_Buy_SC",
+    game_normalshop_get_cs = "null",
+    game_normalshop_get_sc = "pb.NormalShop_Get_SC",
+    game_ossmap_get_cs = "null",
+    game_ossmap_get_sc = "pb.OssMap_Get_SC",
+    game_permit_getawards_cs = "pb.Permit_GetAwards_CS",
+    game_permit_getawards_sc = "pb.Permit_GetAwards_SC",
+    game_permit_queryawards_cs = "null",
+    game_permit_queryawards_sc = "pb.Permit_QueryAwards_SC",
+    game_player_activitydrop_cs = "null",
+    game_player_activitydrop_sc = "pb.Activity_Drop_SC",
+    game_player_beadbox_cs = "pb.Player_BeadBox_CS",
+    game_player_beadbox_sc = "pb.Player_BeadBox_SC",
+    game_player_blockbox_cs = "pb.Player_BlockBox_CS",
+    game_player_blockbox_sc = "pb.Player_BlockBox_SC",
+    game_player_cancelfabricationinslot_cs = "pb.Player_CancelFabricationInSlot_CS",
+    game_player_cancelfabricationinslot_sc = "pb.Player_CancelFabricationInSlot_SC",
+    game_player_cancelharvest_cs = "pb.Farm_CancelHarvest_CS",
+    game_player_cancelharvest_sc = "pb.Farm_CancelHarvest_SC",
+    game_player_changename_cs = "pb.Player_ChangeName_CS",
+    game_player_changename_sc = "pb.Player_ChangeName_SC",
+    game_player_clothesbox_cs = "pb.Player_ClothesBox_CS",
+    game_player_clothesbox_sc = "pb.Player_ClothesBox_SC",
+    game_player_create_cs = "null",
+    game_player_create_sc = "pb.Player_Create_SC",
+    game_player_creativecook_cs = "pb.Food_CreativeCook_CS",
+    game_player_creativecook_sc = "pb.Food_CreativeCook_SC",
+    game_player_cropbox_cs = "pb.Player_CropBox_CS",
+    game_player_cropbox_sc = "pb.Player_CropBox_SC",
+    game_player_doblacklist_cs = "pb.Player_DoBlacklist_CS",
+    game_player_doblacklist_sc = "pb.Player_DoBlacklist_SC",
+    game_player_dofollow_cs = "Player_DoFollow_CS",
+    game_player_dofollow_sc = "pb.Player_DoFollow_SC",
+    game_player_dofriend_cs = "pb.Player_DoFriend_CS",
+    game_player_dofriend_sc = "pb.Player_DoFriend_SC",
+    game_player_drawbox_cs = "pb.Player_DrawBox_CS",
+    game_player_drawbox_sc = "pb.Player_DrawBox_SC",
+    game_player_eatfood_cs = "pb.Player_EatFood_CS",
+    game_player_eatfood_sc = "pb.Player_EatFood_SC",
+    game_player_equipbox_cs = "pb.Player_EquipBox_CS",
+    game_player_equipbox_sc = "pb.Player_EquipBox_SC",
+    game_player_fabricating_cs = "pb.Player_Fabricating_CS",
+    game_player_fabricating_sc = "pb.Player_Fabricating_SC",
+    game_player_farming_cs = "pb.Farm_Farming_CS",
+    game_player_farming_sc = "pb.Farm_Farming_SC",
+    game_player_fertilize_cs = "pb.Farm_Fertilize_CS",
+    game_player_fertilize_sc = "pb.Farm_Fertilize_SC",
+    game_player_friendlist_cs = "null",
+    game_player_friendlist_sc = "pb.Player_Friendlist_SC",
+    game_player_getclothelimit_cs = "null",
+    game_player_getclothelimit_sc = "pb.Clothes_GetClotheLimit_SC",
+    game_player_getclothes_cs = "pb.Clothes_GetClothes_CS",
+    game_player_getclothes_sc = "pb.Clothes_GetClothes_SC",
+    game_player_getfabricationinslot_cs = "pb.Player_GetFabricationInSlot_CS",
+    game_player_getfabricationinslot_sc = "pb.Player_GetFabricationInSlot_SC",
+    game_player_getlevelawards_cs = "pb.Player_GetLevelAwards_CS",
+    game_player_getlevelawards_sc = "pb.Player_GetLevelAwards_SC",
+    game_player_getnpcfavorinfo_cs = "pb.Player_GetNpcFavorInfo_CS",
+    game_player_getnpcfavorinfo_sc = "pb.Player_GetNpcFavorInfo_SC",
+    game_player_getpacksack_cs = "null",
+    game_player_getpacksack_sc = "pb.Player_GetPackSack_SC",
+    game_player_getservertime_cs = "null",
+    game_player_getservertime_sc = "pb.Player_GetServerTime_SC",
+    game_player_giftgiving_cs = "pb.Player_GiftGiving_CS",
+    game_player_giftgiving_sc = "pb.Player_GiftGiving_SC",
+    game_player_guide_cs = "pb.Player_Guide_CS",
+    game_player_guide_sc = "pb.Player_Guide_SC",
+    game_player_harvest_cs = "pb.Farm_Harvest_CS",
+    game_player_harvest_sc = "pb.Farm_Harvest_SC",
+    game_player_info_cs = "pb.Player_Info_CS",
+    game_player_info_sc = "pb.Player_Info_SC",
+    game_player_normalbox_cs = "pb.Player_NormalBox_CS",
+    game_player_normalbox_sc = "pb.Player_NormalBox_SC",
+    game_player_normalcook_cs = "pb.Food_NormalCook_CS",
+    game_player_normalcook_sc = "pb.Food_NormalCook_SC",
+    game_player_querycookbook_cs = "null",
+    game_player_querycookbook_sc = "pb.Food_QueryCookBook_SC",
+    game_player_queryfabricatingstatus_cs = "pb.Player_QueryFabricatingStatus_CS",
+    game_player_queryfabricatingstatus_sc = "pb.Player_QueryFabricatingStatus_SC",
+    game_player_querylevelawardstatus_cs = "null",
+    game_player_querylevelawardstatus_sc = "pb.Player_QueryLevelAwardStatus_SC",
+    game_player_retrieve_cs = "pb.Player_Retrieve_CS",
+    game_player_retrieve_sc = "pb.Player_Retrieve_SC",
+    game_player_retrievesummary_cs = "null",
+    game_player_retrievesummary_sc = "pb.Player_RetrieveSummary_SC",
+    game_player_unlockfunc_sync = "pb.Player_UnlockFunc_Sync",
+    game_player_updateinfo_cs = "Player_UpdateInfo_CS",
+    game_player_updateinfo_sc = "Player_UpdateInfo_CS",
+    game_player_upgradelevel_sync = "pb.Player_UpgradeLevel_Sync",
+    game_player_wearclothes_cs = "pb.Clothes_WearClothes_CS",
+    game_player_wearclothes_sc = "pb.Clothes_WearClothes_SC",
+    game_shop_buygoods_cs = "pb.Shop_BuyGoods_CS",
+    game_shop_buygoods_sc = "pb.Shop_BuyGoods_SC",
+    game_shop_queryallgoods2_cs = "pb.Shop_QueryAllGoods2_CS",
+    game_shop_queryallgoods2_sc = "pb.Shop_QueryAllGoods2_SC",
+    game_task_completetask_cs = "pb.Task_Complete_CS",
+    game_task_completetask_sc = "pb.Task_Complete_SC",
+    game_task_gettasks_cs = "null",
+    game_task_gettasks_sc = "pb.Task_GetTasks_SC",
+    game_task_newtask_cs = "pb.Task_NewTask_CS",
+    game_task_newtask_sc = "pb.Task_NewTask_SC",
+    game_task_taskstageupdate_cs = "pb.Task_TaskStageUpdate_CS",
+    game_task_taskstageupdate_sc = "pb.Task_TaskStageUpdate_SC",
+    gate_account_loginbot = "pb.Account_LoginBot",
+    gate_session_connect_cs = "pb.Session_Connect_CS",
+    gate_session_connect_sc = "pb.Session_Connect_SC",
+    room_adventure_addmonsters_sync = "pb.Adventure_AddMonsters_Sync",
+    room_adventure_attack_cs = "pb.Adventure_Attack_CS",
+    room_adventure_attack_sc = "pb.Adventure_Attack_SC",
+    room_adventure_attack_sync = "pb.Adventure_Attack_Sync",
+    room_adventure_buff_cs = "pb.Adventure_Buff_CS",
+    room_adventure_buff_sc = "pb.Adventure_Buff_SC",
+    room_adventure_buff_sync = "pb.Adventure_Buff_Sync",
+    room_adventure_changemap_cs = "pb.Adventure_ChangeMap_CS",
+    room_adventure_changemap_sc = "pb.Adventure_ChangeMap_SC",
+    room_adventure_drop_sync = "pb.Adventure_Drop_Sync",
+    room_adventure_exit_cs = "null",
+    room_adventure_exit_sc = "pb.Adventure_Exit_SC",
+    room_adventure_getplayer_cs = "pb.Adventure_GetPlayer_CS",
+    room_adventure_getplayer_sc = "pb.Adventure_GetPlayer_SC",
+    room_adventure_itemstate_cs = "pb.Adventure_ItemState_CS",
+    room_adventure_itemstate_sc = "pb.Adventure_ItemState_SC",
+    room_adventure_itemstate_sync = "pb.Adventure_ItemState_Sync",
+    room_adventure_position_cs = "pb.Adventure_Position_CS",
+    room_adventure_position_sc = "pb.Adventure_Position_SC",
+    room_adventure_position_sync = "pb.Adventure_Position_Sync",
+    room_adventure_rolestate_cs = "pb.Adventure_RoleState_CS",
+    room_adventure_rolestate_sc = "pb.Adventure_RoleState_SC",
+    room_adventure_rolestate_sync = "pb.Adventure_RoleState_Sync",
+    room_adventure_shoot_cs = "pb.Adventure_Shoot_CS",
+    room_adventure_shoot_sc = "pb.Adventure_Shoot_SC",
+    room_adventure_shoot_sync = "pb.Adventure_Shoot_Sync",
+    room_adventure_start_cs = "pb.Adventure_Start_CS",
+    room_adventure_start_sc = "pb.Adventure_Start_SC",
+    room_adventure_stop_cs = "pb.Adventure_Stop_CS",
+    room_adventure_stop_sc = "pb.Adventure_Stop_SC",
+    room_adventure_updatemapplayer_sync = "pb.Adventure_UpdateMapPlayer_Sync",
+    room_battle_attack_cs = "pb.Battle_Attack_CS",
+    room_battle_attack_sc = "pb.Battle_Attack_SC",
+    room_battle_attack_sync = "pb.Battle_Attack_Sync",
+    room_battle_buff_cs = "pb.Battle_Buff_CS",
+    room_battle_buff_sc = "pb.Battle_Buff_SC",
+    room_battle_buff_sync = "pb.Battle_Buff_Sync",
+    room_battle_completed_cs = "null",
+    room_battle_completed_sc = "pb.Battle_Completed_SC",
+    room_battle_completed_sync = "pb.Battle_Completed_Sync",
+    room_battle_itemstate_cs = "pb.Battle_ItemState_CS",
+    room_battle_itemstate_sc = "pb.Battle_ItemState_SC",
+    room_battle_itemstate_sync = "pb.Battle_ItemState_Sync",
+    room_battle_position_cs = "pb.Battle_Position_CS",
+    room_battle_position_sc = "pb.Battle_Position_SC",
+    room_battle_position_sync = "pb.Battle_Position_Sync",
+    room_battle_ready_cs = "null",
+    room_battle_ready_sc = "pb.Battle_Ready_SC",
+    room_battle_ready_sync = "pb.Battle_Beady_Sync",
+    room_battle_rolestate_cs = "pb.Battle_RoleState_CS",
+    room_battle_rolestate_sc = "pb.Battle_RoleState_SC",
+    room_battle_rolestate_sync = "pb.Battle_RoleState_Sync",
+    room_battle_shoot_cs = "pb.Battle_Shoot_CS",
+    room_battle_shoot_sc = "pb.Battle_Shoot_SC",
+    room_battle_shoot_sync = "pb.Battle_Shoot_Sync",
+    room_battle_start_cs = "null",
+    room_battle_start_sc = "pb.Battle_Start_SC",
+    room_battle_start_sync = "pb.Battle_Start_Sync",
+    room_eatfood_sync = "pb.EatFood_Sync",
+    room_square_acceptask_cs = "pb.Square_AcceptTask_CS",
+    room_square_acceptask_sc = "pb.Square_AcceptTask_SC",
+    room_square_enter_sync = "pb.Square_Enter_Sync",
+    room_square_exit_cs = "null",
+    room_square_exit_sc = "pb.Square_Exit_SC",
+    room_square_exit_sync = "pb.Square_Exit_Sync",
+    room_square_getplayer_cs = "pb.Square_GetPlayer_CS",
+    room_square_getplayer_sc = "pb.Square_GetPlayer_SC",
+    room_square_match_cs = "pb.Square_Match_CS",
+    room_square_match_sc = "pb.Square_Match_SC",
+    room_square_position_cs = "pb.Square_Position_CS",
+    room_square_position_sc = "pb.Square_Position_SC",
+    room_square_position_sync = "pb.Square_Position_Sync",
+    room_square_rolestate_cs = "pb.Square_RoleState_CS",
+    room_square_rolestate_sc = "pb.Square_RoleState_SC",
+    room_square_rolestate_sync = "pb.Square_RoleState_Sync",
+    room_team_acceptinvite_cs = "pb.Team_AcceptInvite_CS",
+    room_team_acceptinvite_sc = "pb.Team_AcceptInvite_SC",
+    room_team_acceptjoin_cs = "pb.Team_AcceptJoin_CS",
+    room_team_acceptjoin_sc = "pb.Team_AcceptJoin_SC",
+    room_team_captainchange_sync = "pb.Team_CaptainChange_Sync",
+    room_team_changeadventuremap_sync = "pb.Team_ChangeAdventureMap_Sync",
+    room_team_create_cs = "null",
+    room_team_create_sc = "pb.Team_Create_SC",
+    room_team_enter_sync = "pb.Team_Enter_Sync",
+    room_team_entersquare_sync = "pb.Team_EnterSquare_Sync",
+    room_team_exit_cs = "null",
+    room_team_exit_sc = "pb.Team_Exit_SC",
+    room_team_exit_sync = "pb.Team_Exit_Sync",
+    room_team_exitadventure_sync = "pb.Team_ExitAdventure_Sync",
+    room_team_invite_cs = "pb.Team_Invite_CS",
+    room_team_invite_sc = "pb.Team_Invite_SC",
+    room_team_invite_sync = "pb.Team_Invite_Sync",
+    room_team_inviterefused_sync = "pb.Team_InviteRefused_Sync",
+    room_team_join_cs = "pb.Team_Join_CS",
+    room_team_join_sc = "pb.Team_Join_SC",
+    room_team_join_sync = "pb.Team_Join_Sync",
+    room_team_joinrefused_sync = "pb.Team_JoinRefused_Sync",
+    room_team_ready_cs = "pb.Team_Ready_CS",
+    room_team_ready_sc = "pb.Team_Ready_SC",
+    room_team_ready_sync = "pb.Team_Ready_Sync",
+    room_team_start_cs = "null",
+    room_team_start_sc = "pb.Team_Start_SC",
+    room_team_start_sync = "pb.Team_Start_Sync",
+    room_team_team_sync = "pb.Team_Sync",
+    room_updateclothes_sync = "pb.UpdateClothes_Sync",
+    room_updateteam_sync = "pb.UpdateTeam_Sync",
+}
+
+RouteID = {
+    client_photodetail = "client.photodetail",
+    client_userdata = "client.userdata",
+    game_account_login_cs = "game.account.login",
+    game_account_logout_cs = "game.account.logout",
+    game_achieve_getawards_cs = "game.achieve.getawards",
+    game_achieve_queryawards_cs = "game.achieve.queryawards",
+    game_activityshop_exchange_cs = "game.activityshop.exchange",
+    game_activityshop_getuncollected_cs = "game.activityshop.getuncollected",
+    game_activityshop_onebyoneexchange_cs = "game.activityshop.onebyoneexchange",
+    game_activityshop_queryonebyoneresbyid_cs = "game.activityshop.queryonebyoneresbyid",
+    game_activityshop_querystatus_cs = "game.activityshop.querystatus",
+    game_activtyshop_querysolarterm_cs = "game.activtyshop.querysolarterm",
+    game_battle_changemap_cs = "game.battle.changemap",
+    game_battle_changemap_sync = "game.battle.changemap_sync",
+    game_exchange_cancelsell_cs = "game.exchange.cancelsell",
+    game_exchange_consignment_cs = "game.exchange.consignment",
+    game_exchange_order = "game.exchange.order",
+    game_exchange_querybyname_cs = "game.exchange.querybyname",
+    game_exchange_querybyselectid_cs = "game.exchange.querybyselectid",
+    game_exchange_sell_cs = "game.exchange.sell",
+    game_mail_getgamemails_cs = "game.mail.getgamemails",
+    game_mail_getmailrewards_cs = "game.mail.getmailrewards",
+    game_mail_getnewgamemails_cs = "game.mail.getnewgamemails",
+    game_mail_getplayermails_cs = "game.mail.getplayermails",
+    game_mail_readgamemail_cs = "game.mail.readgamemail",
+    game_mail_readplayermail_cs = "game.mail.readplayermail",
+    game_normalshop_buy_cs = "game.normalshop.buy",
+    game_normalshop_get_cs = "game.normalshop.get",
+    game_ossmap_get_cs = "game.ossmap.get",
+    game_permit_getawards_cs = "game.permit.getawards",
+    game_permit_queryawards_cs = "game.permit.queryawards",
+    game_player_activitydrop_cs = "game.player.activitydrop",
+    game_player_beadbox_cs = "game.player.beadbox",
+    game_player_blockbox_cs = "game.player.blockbox",
+    game_player_cancelfabricationinslot_cs = "game.player.cancelfabricationinslot",
+    game_player_cancelharvest_cs = "game.player.cancelharvest",
+    game_player_changename_cs = "game.player.changename",
+    game_player_clothesbox_cs = "game.player.clothesbox",
+    game_player_create_cs = "game.player.create",
+    game_player_creativecook_cs = "game.player.creativecook",
+    game_player_cropbox_cs = "game.player.cropbox",
+    game_player_doblacklist_cs = "game.player.doblacklist",
+    game_player_dofollow_cs = "game.player.dofollow",
+    game_player_dofriend_cs = "game.player.dofriend",
+    game_player_drawbox_cs = "game.player.drawbox",
+    game_player_eatfood_cs = "game.player.eatfood",
+    game_player_equipbox_cs = "game.player.equipbox",
+    game_player_fabricating_cs = "game.player.fabricating",
+    game_player_farming_cs = "game.player.farming",
+    game_player_fertilize_cs = "game.player.fertilize",
+    game_player_friendlist_cs = "game.player.friendlist",
+    game_player_getclothelimit_cs = "game.player.getclothelimit",
+    game_player_getclothes_cs = "game.player.getclothes",
+    game_player_getfabricationinslot_cs = "game.player.getfabricationinslot",
+    game_player_getlevelawards_cs = "game.player.getlevelawards",
+    game_player_getnpcfavorinfo_cs = "game.player.getnpcfavorinfo",
+    game_player_getpacksack_cs = "game.player.getpacksack",
+    game_player_getservertime_cs = "game.player.getservertime",
+    game_player_giftgiving_cs = "game.player.giftgiving",
+    game_player_guide_cs = "game.player.guide",
+    game_player_harvest_cs = "game.player.harvest",
+    game_player_info_cs = "game.player.info",
+    game_player_normalbox_cs = "game.player.normalbox",
+    game_player_normalcook_cs = "game.player.normalcook",
+    game_player_querycookbook_cs = "game.player.querycookbook",
+    game_player_queryfabricatingstatus_cs = "game.player.queryfabricatingstatus",
+    game_player_querylevelawardstatus_cs = "game.player.querylevelawardstatus",
+    game_player_retrieve_cs = "game.player.retrieve",
+    game_player_retrievesummary_cs = "game.player.retrievesummary",
+    game_player_unlockfunc_sync = "game.player.unlockfunc_sync",
+    game_player_updateinfo_cs = "game.player.updateinfo",
+    game_player_upgradelevel_sync = "game.player.upgradelevel_sync",
+    game_player_wearclothes_cs = "game.player.wearclothes",
+    game_shop_buygoods_cs = "game.shop.buygoods",
+    game_shop_queryallgoods2_cs = "game.shop.queryallgoods2",
+    game_task_completetask_cs = "game.task.completetask",
+    game_task_gettasks_cs = "game.task.gettasks",
+    game_task_newtask_cs = "game.task.newtask",
+    game_task_taskstageupdate_cs = "game.task.taskstageupdate",
+    gate_account_loginbot = "gate.account.loginbot",
+    gate_session_connect_cs = "gate.session.connect",
+    room_adventure_addmonsters_sync = "room.adventure.addmonsters_sync",
+    room_adventure_attack_cs = "room.adventure.attack",
+    room_adventure_attack_sync = "room.adventure.attack_sync",
+    room_adventure_buff_cs = "room.adventure.buff",
+    room_adventure_buff_sync = "room.adventure.buff_sync",
+    room_adventure_changemap_cs = "room.adventure.changemap",
+    room_adventure_drop_sync = "room.adventure.drop_sync",
+    room_adventure_exit_cs = "room.adventure.exit",
+    room_adventure_getplayer_cs = "room.adventure.getplayer",
+    room_adventure_itemstate_cs = "room.adventure.itemstate",
+    room_adventure_itemstate_sync = "room.adventure.itemstate_sync",
+    room_adventure_position_cs = "room.adventure.position",
+    room_adventure_position_sync = "room.adventure.position_sync",
+    room_adventure_rolestate_cs = "room.adventure.rolestate",
+    room_adventure_rolestate_sync = "room.adventure.rolestate_sync",
+    room_adventure_shoot_cs = "room.adventure.shoot",
+    room_adventure_shoot_sync = "room.adventure.shoot_sync",
+    room_adventure_start_cs = "room.adventure.start",
+    room_adventure_stop_cs = "room.adventure.stop",
+    room_adventure_updatemapplayer_sync = "room.adventure.updatemapplayer_sync",
+    room_battle_attack_cs = "room.battle.attack",
+    room_battle_attack_sync = "room.battle.attack_sync",
+    room_battle_buff_cs = "room.battle.buff",
+    room_battle_buff_sync = "room.battle.buff_sync",
+    room_battle_completed_cs = "room.battle.completed",
+    room_battle_completed_sync = "room.battle.completed_sync",
+    room_battle_itemstate_cs = "room.battle.itemstate",
+    room_battle_itemstate_sync = "room.battle.itemstate_sync",
+    room_battle_position_cs = "room.battle.position",
+    room_battle_position_sync = "room.battle.position_sync",
+    room_battle_ready_cs = "room.battle.ready",
+    room_battle_ready_sync = "room.battle.ready_sync",
+    room_battle_rolestate_cs = "room.battle.rolestate",
+    room_battle_rolestate_sync = "room.battle.rolestate_sync",
+    room_battle_shoot_cs = "room.battle.shoot",
+    room_battle_shoot_sync = "room.battle.shoot_sync",
+    room_battle_start_cs = "room.battle.start",
+    room_battle_start_sync = "room.battle.start_sync",
+    room_eatfood_sync = "room.eatfood_sync",
+    room_square_acceptask_cs = "room.square.acceptask",
+    room_square_enter_sync = "room.square.enter_sync",
+    room_square_exit_cs = "room.square.exit",
+    room_square_exit_sync = "room.square.exit_sync",
+    room_square_getplayer_cs = "room.square.getplayer",
+    room_square_match_cs = "room.square.match",
+    room_square_position_cs = "room.square.position",
+    room_square_position_sync = "room.square.position_sync",
+    room_square_rolestate_cs = "room.square.rolestate",
+    room_square_rolestate_sync = "room.square.rolestate_sync",
+    room_team_acceptinvite_cs = "room.team.acceptinvite",
+    room_team_acceptjoin_cs = "room.team.acceptjoin",
+    room_team_captainchange_sync = "room.team.captainchange_sync",
+    room_team_changeadventuremap_sync = "room.team.changeadventuremap_sync",
+    room_team_create_cs = "room.team.create",
+    room_team_enter_sync = "room.team.enter_sync",
+    room_team_entersquare_sync = "room.team.entersquare_sync",
+    room_team_exit_cs = "room.team.exit",
+    room_team_exit_sync = "room.team.exit_sync",
+    room_team_exitadventure_sync = "room.team.exitadventure_sync",
+    room_team_invite_cs = "room.team.invite",
+    room_team_invite_sync = "room.team.invite_sync",
+    room_team_inviterefused_sync = "room.team.inviterefused_sync",
+    room_team_join_cs = "room.team.join",
+    room_team_join_sync = "room.team.join_sync",
+    room_team_joinrefused_sync = "room.team.joinrefused_sync",
+    room_team_ready_cs = "room.team.ready",
+    room_team_ready_sync = "room.team.ready_sync",
+    room_team_start_cs = "room.team.start",
+    room_team_start_sync = "room.team.start_sync",
+    room_team_team_sync = "room.team.team_sync",
+    room_updateclothes_sync = "room.updateclothes_sync",
+    room_updateteam_sync = "room.updateteam_sync",
+}

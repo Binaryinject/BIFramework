@@ -1,0 +1,60 @@
+-- OppositePosition
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "OppositePosition",
+    type = "Action",
+    desc = "获取反向位置",
+    input = { "对象" },
+    output = { "输出位置"},
+    args = {
+        { "distance", "int?", "距离" },
+        { "radius", "int?", "范围格子" },
+    }
+}
+
+function M.run(node, env, target)
+    if target == nil or target:IsDeath() then
+        return bret.FAIL
+    end
+    local owner = env.owner
+    local args = node.args
+    local distance = args.distance or 1
+    local radius = args.radius or 1
+    local dir = Vector3.Normalize(target.transform.position - owner.transform.position)
+    local position = owner.transform.position + (-dir * distance)
+    --local wfc = Map.SandBoxBuilder.wfcGenerator
+    --local blocks = wfc:GetGridsByRadius(position, radius, CS.WfcGenerator.SearchType.Block)
+    --local maxDistance = 0
+    --local maxPos
+    --if #blocks > 0 then
+    --    for i = 1, #blocks do
+    --        local curPosition = wfc.gridPositions[wfc.gridKeys[blocks[i]]]
+    --        local curDistance = Vector3.Distance(curPosition, owner.transform.position)
+    --        if curDistance > maxDistance then
+    --            maxDistance = curDistance
+    --            maxPos = curPosition
+    --        end
+    --    end
+    --    return bret.SUCCESS, maxPos
+    --else
+    --    position = target.transform.position + dir * distance
+    --    blocks = wfc:GetGridsByRadius(position, radius, CS.WfcGenerator.SearchType.Block)
+    --    if #blocks > 0 then
+    --        for i = 1, #blocks do
+    --            local curPosition = wfc.gridPositions[wfc.gridKeys[blocks[i]]]
+    --            local curDistance = Vector3.Distance(curPosition, owner.transform.position)
+    --            if curDistance > maxDistance then
+    --                maxDistance = curDistance
+    --                maxPos = curPosition
+    --            end
+    --        end
+    --        return bret.SUCCESS, maxPos
+    --    end
+    --end
+    return bret.SUCCESS, position
+end
+
+return M

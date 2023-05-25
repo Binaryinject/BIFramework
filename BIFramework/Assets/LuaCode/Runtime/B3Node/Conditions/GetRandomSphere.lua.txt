@@ -1,0 +1,33 @@
+-- GetRandomSphere
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetRandomSphere",
+    type = "Condition",
+    desc = "获取随机范围位置",
+    output = { "随机位置" },
+    args = {
+        { "radius", "int", "范围" },
+        { "minDot", "int", "点积小于等于" },
+        { "maxDot", "int", "点积大于等于" },
+    }
+}
+
+function M.run(node, env)
+    local args = node.args
+    local upDir = Vector3.up
+    local randomPos
+    while 1 do
+        randomPos = Random.onUnitSphere
+        local dot = Vector3.Dot(upDir, randomPos)
+        if dot >= args.maxDot and dot <= args.minDot then
+            break
+        end
+    end
+    local position = env.owner.transform.position + Vector3.For(randomPos) * args.radius
+    return bret.SUCCESS, position
+end
+
+return M

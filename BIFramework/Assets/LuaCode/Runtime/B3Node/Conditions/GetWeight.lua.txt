@@ -1,0 +1,26 @@
+-- GetWeight
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetWeight",
+    type = "Condition",
+    desc = "权重随机",
+    args = {
+        { "property", "string", "权重属性" },
+    }
+}
+
+function M.run(node, env)
+    ---@type Monster
+    local o = env.owner
+    local species = tostring(o.Config.Species)
+    local weight = Configs.RoleSpecies[species][node.args.property]
+    if weight == nil then
+        return bret.FAIL
+    end
+    return TernaryOp(weight >= Random.Range(0, 100), bret.SUCCESS, bret.FAIL)
+end
+
+return M

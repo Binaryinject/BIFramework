@@ -1,0 +1,35 @@
+-- MoveToSpawn
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "MoveToSpawn",
+    type = "Action",
+    desc = "移动到出生点",
+    args = {
+        { "stoppingDistance", "int?", "停止距离" },
+        { "waiting", "boolean?", "等待结束" },
+    }
+}
+
+function M.run(node, env)
+    local owner = env.owner
+    local args = node.args
+    if owner:IsDeath() then
+        return bret.FAIL
+    end
+
+    local stoppingDistance = args.stoppingDistance or owner.character.stoppingDistance
+    local targetPos = Map:GetShareRole(owner.Type, owner.ID).position:Get()
+    if Vector3.Distance(owner.transform.position, targetPos) > stoppingDistance then
+        owner.character:MoveToLocation(targetPos)
+        owner.character.stoppingDistance = stoppingDistance
+        if node.args.waiting then
+            return node:yield(env)
+        end
+    end
+    return bret.SUCCESS
+end
+
+return M

@@ -1,0 +1,48 @@
+-- CmpAnimation
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "CmpAnimation",
+    type = "Condition",
+    desc = "对比目标当前动画",
+    input = { "目标" },
+    args = {
+        { "animation", "string", "对比动画名|分割" },
+    }
+}
+
+function M.run(node, env, target)
+    local owner = env.owner
+    local args = node.args
+    if owner:IsDeath() then
+        return bret.FAIL
+    end
+    
+    local cmpAnis = string.split(args.animation, "|")
+    local type = target.Type
+    local shareData = Map:GetShareRole(target.Type,target.ID)
+    local animation
+    if type == ActorType.Hero then
+        animation = AG_Hero.Keys[shareData.curAction:Get() - 1]
+    elseif type == ActorType.Monster then
+        animation = AG_Monster.Keys[shareData.curAction:Get() - 1]
+    end
+
+    local onAnimateState
+    for _, v in pairs(cmpAnis) do
+        if v and v ~= "" and v == animation then
+            onAnimateState = true
+            break
+        end
+    end
+    
+    if onAnimateState then
+        return bret.SUCCESS
+    else
+        return bret.FAIL
+    end
+end
+
+return M

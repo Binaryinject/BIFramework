@@ -1,0 +1,38 @@
+-- GetPatrol
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetPatrol",
+    type = "Condition",
+    desc = "获取下一个巡逻位置",
+    output = { "目标变量" },
+    args = {
+        { "type", "string", "巡逻类型" },
+        { "radius", "int", "巡逻范围格子" },
+        { "selfPosition", "boolean?", "使用自身位置" },
+    },
+}
+
+function M.run(node, env)
+    local owner = env.owner
+    if owner:IsDeath() then
+        return bret.FAIL
+    end
+
+    local args = node.args
+    if args.type == "random" then
+        local wfc = Map.SandBoxBuilder.wfcGenerator
+        local position  = TernaryOp(args.selfPosition, owner.transform.position, env.origin)
+        local blocks = wfc:GetGridsByRadius(position, args.radius, CS.WfcGenerator.SearchType.Block)
+        if #blocks > 0 then
+            local block = tonumber(blocks[Random.Range(1, #blocks)])
+            local gridPosition = wfc.gridPositions[wfc.gridKeys[block]]
+            return bret.SUCCESS, gridPosition
+        end
+    end
+    return bret.FAIL
+end
+
+return M

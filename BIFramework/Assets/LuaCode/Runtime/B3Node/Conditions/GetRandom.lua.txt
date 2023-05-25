@@ -1,0 +1,19 @@
+-- GetRandom
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetRandom",
+    type = "Condition",
+    desc = "获取随机",
+    args = {
+        { "property", "int", "概率" },
+    }
+}
+
+function M.run(node, env)
+    return TernaryOp(node.args.property >= Random.Range(0.0, 1.0), bret.SUCCESS, bret.FAIL)
+end
+
+return M

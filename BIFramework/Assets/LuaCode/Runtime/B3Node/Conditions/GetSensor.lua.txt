@@ -1,0 +1,92 @@
+-- GetSensor
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetSensor",
+    type = "Condition",
+    desc = "获取对象查找",
+    output = { "对象", "位置" },
+    args = {
+        { "viewRadius", "int", "视野半径" },
+        { "viewAngle", "int", "视野角度" },
+        { "offset", "string?", "偏移" },
+        { "blockTest", "boolean?", "遮挡检测" },
+        { "poolHero", "boolean?", "英雄对象池" },
+        { "poolMonster", "boolean?", "怪物对象池" },
+        { "poolNPC", "boolean?", "NPC对象池" },
+    },
+}
+
+function M.run(node, env)
+    local args = node.args
+    ---@type Monster or Npc
+    local owner = env.owner
+    if args.viewAngle == 0 or owner:IsDeath() then
+        return bret.FAIL
+    end
+
+    local function SensorCall(objs)
+        for _, v in pairs(objs) do
+            local oPosition = Map:GetShareRole(owner.Type, owner.ID).position:Get() --Vector3.For(owner.transform.position)
+            local tPosition = Map:GetShareRole(v.Type, v.ID).position:Get()--Vector3.For(v.transform.position)
+            if v ~= owner and v.Hp > 0 and WithinDistance(oPosition, tPosition, args.viewRadius) then
+
+                local offset = Vector3.zero
+                if args.offset then
+                    local sp = string.split(args.offset, ",")
+                    offset = Vector3.New(tonumber(sp[1]), tonumber(sp[2]), tonumber(sp[3]))
+                end
+                local newPosition = oPosition + offset
+                local dirToTarget = (tPosition - newPosition).normalized
+                local distance = Vector3.Distance(newPosition, tPosition)
+                if args.blockTest then
+                    local hit = UnityBridge.PhysicsRaycast(CS.UnityEngine.Ray(newPosition, dirToTarget), distance, LayerMask.GetMask("Ground"))
+                    -- 有物理阻挡
+                    if hit.transform then
+                        return bret.FAIL
+                    end
+                end
+
+                if args.viewAngle >= 360 then
+                    return bret.SUCCESS, v, tPosition
+                else
+                    local angle = Vector3.Angle(Vector3.For(owner.transform.forward), dirToTarget)
+
+                    --角度在视野内
+                    if angle < args.viewAngle * 0.5 then
+                        return bret.SUCCESS, v, tPosition
+                    end
+                end
+            end
+        end
+        return bret.FAIL
+    end
+
+    local ret = bret.FAIL
+    local r1, r2
+
+    if args.poolHero then
+        ret, r1, r2 = SensorCall(Map.RuntimeHero)
+        if ret == bret.SUCCESS then
+            return ret, r1, r2
+        end
+    end
+
+    if args.poolMonster then
+        ret, r1, r2 = SensorCall(Map.RuntimeMonster)
+        if ret == bret.SUCCESS then
+            return ret, r1, r2
+        end
+    end
+
+    if args.poolNPC then
+        ret, r1, r2 = SensorCall(Map.RuntimeNpc)
+    end
+    return ret, r1, r2
+
+end
+
+
+return M

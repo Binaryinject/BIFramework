@@ -1,0 +1,42 @@
+-- RotateTowards
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "RotateTowards",
+    type = "Action",
+    desc = "转向目标位置",
+    input = { "目标位置" },
+    args = {
+        { "timeOut", "int?", "超时(默认0.3)" },
+    }
+}
+
+function M.run(node, env, target)
+    local owner = env.owner
+    if target == nil or owner:IsDeath() then
+        return bret.SUCCESS
+    end
+
+    local t = node:resume(env)
+    local role = Map:GetShareRole(owner.Type, owner.ID)
+    local dir = (target - role.position:Get()).normalized;
+    local rotation = role.rotation:Get()
+    local quaternion = Quaternion.Euler(rotation.x, rotation.y, rotation.z)
+    local d = Vector3.Dot(quaternion * Vector3.forward, dir);
+    owner.character:RotateTowards(dir)
+
+    if t then
+        if env.ctx.time >= t or d >= 0.95 then
+            return bret.SUCCESS
+        else
+            return bret.RUNNING
+        end
+    end
+
+    local timeOut = node.args.timeOut or 0.3
+    return node:yield(env, env.ctx.time + timeOut)
+end
+
+return M

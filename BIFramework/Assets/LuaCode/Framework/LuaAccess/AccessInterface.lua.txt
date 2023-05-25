@@ -1,0 +1,181 @@
+---@class AInt
+local _AInt = class("AInt")
+_AInt.index = -1
+_AInt._csharp = weak
+_AInt._core = {}
+
+function _AInt:ctor(core, num)
+    self._core = core
+    self.index = self._core.index
+    self._core:Extend(1)
+    self._csharp = CS.LuaAccess.AInt(self._core:GetCSharpAccess(), self.index)
+    self:Set(num)
+end
+
+function _AInt:Get()
+    return self._core.Table[self.index]
+end
+
+function _AInt:Set(v)
+    if v then
+        self._core.Table[self.index] = v
+    end
+end
+
+function _AInt:GetCSharp()
+    return self._csharp
+end
+
+---@class AFloat
+local _AFloat = class("AFloat")
+_AFloat.index = -1
+_AFloat._csharp = weak
+_AFloat._core = {}
+
+function _AFloat:ctor(core, num)
+    self._core = core
+    self.index = self._core.index
+    self._core:Extend(1)
+    self._csharp = CS.LuaAccess.AFloat(self._core:GetCSharpAccess(), self.index)
+    self:Set(num)
+end
+
+function _AFloat:Get()
+    return self._core.Table[self.index]
+end
+
+function _AFloat:Set(v)
+    if v then
+        self._core.Table[self.index] = v
+    end
+end
+
+function _AFloat:GetCSharp()
+    return self._csharp
+end
+
+---@class ABool
+local _ABool = class("ABool")
+_ABool.index = -1
+_ABool._csharp = weak
+_ABool._core = {}
+
+function _ABool:ctor(core, b)
+    self._core = core
+    self.index = self._core.index
+    self._core:Extend(1)
+    self._csharp = CS.LuaAccess.ABool(self._core:GetCSharpAccess(), self.index)
+    self:Set(b)
+end
+
+function _ABool:Get()
+    return self._core.Table[self.index] == 1
+end
+
+function _ABool:Set(b)
+    if b then
+        self._core.Table[self.index] = 1
+    else
+        self._core.Table[self.index] = 0
+    end
+end
+
+function _ABool:GetCSharp()
+    return self._csharp
+end
+
+---@class ADouble
+local _ADouble = class("ADouble")
+_ADouble.index = -1
+_ADouble._csharp = weak
+_ADouble._core = {}
+
+function _ADouble:ctor(core, num)
+    self._core = core
+    self.index = self._core.index
+    self._core:Extend(1)
+    self._csharp = CS.LuaAccess.ADouble(self._core:GetCSharpAccess(), self.index)
+    self:Set(num)
+end
+
+function _ADouble:Get()
+    return self._core.Table[self.index]
+end
+
+function _ADouble:Set(v)
+    if v then
+        self._core.Table[self.index] = v
+    end
+end
+
+function _ADouble:GetCSharp()
+    return self._csharp
+end
+
+---@class AVector3
+local _AVector3 = class("AVector3")
+_AVector3.index = -1
+_AVector3._csharp = weak
+_AVector3._core = {}
+
+function _AVector3:ctor(core, vec3)
+    self._core = core
+    self.index = self._core.index
+    self._core:Extend(3)
+    self._csharp = CS.LuaAccess.AVector3(self._core:GetCSharpAccess(), self.index)
+    self:Set(vec3)
+end
+
+function _AVector3:Get()
+    return Vector3.New(self._core.Table[self.index], self._core.Table[self.index + 1], self._core.Table[self.index + 2])
+end
+
+function _AVector3:Set(v)
+    if v then
+        self._core.Table[self.index] = v.x
+        self._core.Table[self.index + 1] = v.y
+        self._core.Table[self.index + 2] = v.z
+    end
+end
+
+function _AVector3:GetCSharp()
+    return self._csharp
+end
+
+---@class AVector4
+local _AVector4 = class("AVector4")
+_AVector4.index = -1
+_AVector4._csharp = weak
+_AVector4._core = {}
+
+function _AVector4:ctor(core, vec4)
+    self._core = core
+    self.index = self._core.index
+    self._core:Extend(4)
+    self._csharp = CS.LuaAccess.AVector4(self._core:GetCSharpAccess(), self.index)
+    self:Set(vec4)
+end
+
+function _AVector4:Get()
+    return Vector4.New(self._core.Table[self.index], self._core.Table[self.index + 1], self._core.Table[self.index + 2], self._core.Table[self.index + 3])
+end
+
+function _AVector4:Set(v)
+    if v then
+        self._core.Table[self.index] = v.x
+        self._core.Table[self.index + 1] = v.y
+        self._core.Table[self.index + 2] = v.z
+        self._core.Table[self.index + 3] = v.w
+    end
+end
+
+function _AVector4:GetCSharp()
+    return self._csharp
+end
+
+AInt = _AInt
+AFloat = _AFloat
+ABool = _ABool
+ADouble = _ADouble
+AVector3 = _AVector3
+AVector4 = _AVector4

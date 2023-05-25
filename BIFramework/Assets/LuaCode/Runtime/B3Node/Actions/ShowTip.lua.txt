@@ -1,0 +1,24 @@
+-- ShowTip
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "ShowTip",
+    type = "Action",
+    desc = "显示Tip",
+    args = {
+        { "text", "string?", "内容" },
+        { "time", "int?", "时间" },
+        { "show", "boolean?", "显示" },
+    }
+}
+
+function M.run(node, env)
+    ---@type UIRolePopup
+    local popup = env.rolePopup
+    popup:ShowDialogueLayer(node.args.show or true, node.args.text, node.args.time)
+    return bret.SUCCESS
+end
+
+return M

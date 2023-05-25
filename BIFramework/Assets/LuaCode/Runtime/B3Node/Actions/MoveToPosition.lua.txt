@@ -1,0 +1,60 @@
+-- MoveToPosition
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "MoveToPosition",
+    type = "Action",
+    desc = "移动到指定位置",
+    input = { "目标位置" },
+    args = {
+        { "second", "int?", "剩余秒数" },
+        { "distance", "int?", "距离" },
+        { "waiting", "boolean?", "等待结束" },
+    }
+}
+
+function M.run(node, env, targetPos)
+    local owner = env.owner
+    local args = node.args
+    if owner:IsDeath() then
+        return bret.FAIL
+    end
+    local t = node:resume(env)
+    local targetPosition = env.targetPosition
+    local targetPriority = env.targetPriority
+    local distance = args.distance or 20
+    local nowTime = os.time()
+    local pos = owner.transform.position
+    if t then
+        if args.second then
+            local diff = os.difftime(nowTime, t)
+            if diff >= args.second then
+                env.targetPosition = nil
+                return bret.SUCCESS
+            end
+        end
+        if args.distance and Vector3.Distance(pos, env.origin) >= distance then
+            env.targetPosition = nil
+            return bret.SUCCESS
+        end
+        return bret.RUNNING
+    else
+        if targetPosition and args.priority > 0 and args.priority <= targetPriority then
+            if Vector3.Distance(pos, env.origin) >= distance then
+                env.targetPosition = nil
+            end
+        else
+            owner.character:SetMovementDirection(targetPos)
+            env.targetPosition = targetPos
+            env.targetPriority = args.priority
+            if node.args.waiting then
+                return node:yield(env, nowTime)
+            end
+        end
+        return bret.SUCCESS
+    end
+end
+
+return M

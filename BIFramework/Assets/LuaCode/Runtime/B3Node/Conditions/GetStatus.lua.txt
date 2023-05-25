@@ -1,0 +1,21 @@
+-- GetStatus
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetStatus",
+    type = "Condition",
+    desc = "状态查询",
+    args = {
+        { "property", "string", "状态属性" },
+    },
+    output = {"输出变量"}
+}
+
+function M.run(node, env)
+    local variable = env[node.args.property]
+    return TernaryOp(variable, bret.SUCCESS, variable, bret.FAIL)
+end
+
+return M

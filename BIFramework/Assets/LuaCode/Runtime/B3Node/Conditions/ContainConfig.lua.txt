@@ -1,0 +1,31 @@
+-- ContainConfig
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "ContainConfig",
+    type = "Condition",
+    desc = "配置表的物种数组遍历",
+    args = {
+        {"property", "string", "数组字段"},
+    },
+    input = { "对象" },
+}
+
+function M.run(node, env, obj)
+    ---@type Monster
+    local o = env.owner
+    local speciesTarget = obj.Config.Species
+    local species = tostring(o.Config.Species)
+    local props = Configs.RoleSpecies[species][node.args.property]
+    
+    for _, v in pairs(props) do
+        if speciesTarget == v then
+            return bret.SUCCESS
+        end
+    end
+    return bret.FAIL
+end
+
+return M

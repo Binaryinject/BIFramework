@@ -1,0 +1,17 @@
+-- GetSpawn
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetSpawn",
+    type = "Condition",
+    desc = "获取出生点位置",
+    output = { "目标变量" },
+}
+
+function M.run(node, env)
+    return bret.SUCCESS, env.origin
+end
+
+return M

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b41aac060bd8cc408bbb2ea3ceee283, type: 3}
+  m_Name: GlobalSO
+  m_EditorClassIdentifier: 
+  frameRate: 2
+  onPlayModeChange:
+    m_PersistentCalls:
+      m_Calls: []
+  _playMode: 0
+  _inputMode: 0
+  defaultScene: SandBoxScene
+  isShowLogo: 0
+  isOnline: 1
+  isLoginSdk: 0
+  isNeedUIOnLogin: 1
+  defaultPlayerName: EastBest

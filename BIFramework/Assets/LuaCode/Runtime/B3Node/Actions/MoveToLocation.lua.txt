@@ -1,0 +1,58 @@
+-- MoveToLocation
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "MoveToLocation",
+    type = "Action",
+    desc = "移动到目标",
+    input = { "目标位置" },
+    args = {
+        { "priority", "int", "优先度" },
+        { "stoppingDistance", "int?", "停止距离" },
+        { "waiting", "boolean?", "等待结束" },
+    }
+}
+
+function M.run(node, env, target)
+    local owner = env.owner
+    local args = node.args
+    local stoppingDistance = args.stoppingDistance or owner.character.stoppingDistance
+    if owner:IsDeath() or not target then
+        return bret.FAIL
+    end
+
+    local t = node:resume(env)
+    local targetPosition = env.targetPosition
+    local targetPriority = env.targetPriority
+    local pos = Map:GetShareRole(owner.Type, owner.ID).position:Get()
+    if t then
+        if WithinDistance(pos, targetPosition, stoppingDistance + 0.05) then
+            env.targetPosition = nil
+            return bret.SUCCESS
+        end
+        return bret.RUNNING
+    else
+        if targetPosition and args.priority > 0 and args.priority <= targetPriority then
+            if WithinDistance(pos, targetPosition, stoppingDistance + 0.05) then
+                env.targetPosition = nil
+            end
+        else
+            local nearest = CS.AstarPath.active:GetNearest(target)
+            if nearest then
+                local position = nearest.node.position:GetVector3()
+                owner.character:MoveToLocation(position)
+                owner.character.stoppingDistance = stoppingDistance
+                env.targetPosition = position
+                env.targetPriority = args.priority
+                if node.args.waiting then
+                    return node:yield(env, true)
+                end
+            end
+        end
+        return bret.SUCCESS
+    end
+end
+
+return M

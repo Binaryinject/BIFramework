@@ -1,0 +1,33 @@
+-- Tick
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "Tick",
+    type = "Composite",
+    desc = "轮询控制",
+    args = {
+        { "interval", "int", "间隔" },
+        { "reset", "boolean?", "重置" },
+    }
+}
+
+function M.run(node, env)
+    env.tick = env.tick + Time.deltaTime
+    if env.tick >= node.args.interval then 
+        if node.args.reset then
+            env.tick = 0
+        end
+        for i = 1, #node.children do
+            local child = node.children[i]
+            local r = child:run(env)
+            if r == bret.RUNNING then
+                return node:yield(env, i)
+            end
+        end
+    end
+    return bret.SUCCESS
+end
+
+return M

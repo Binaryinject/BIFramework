@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Assets
+  m_EditorClassIdentifier: 
+  m_GroupName: Assets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 03b2d02784b59d34e99523a806d1694b
+  m_SerializeEntries:
+  - m_GUID: 92b0945a3553d524081915714f33ec7c
+    m_Address: Assets/_DynamicAssets/Configs
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Config
+  - m_GUID: 60827c949f3bebf44a20f28c8e47558f
+    m_Address: Assets/_DynamicAssets
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Default
+  - m_GUID: 00a5b4bf8c1b5ce4e8022b139e0daa44
+    m_Address: Assets/_DynamicAssets/SO/ShaderParams
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ShaderParams
+  - m_GUID: 6d317b20e08cfc048ae4fa1d241ac346
+    m_Address: Assets/_DynamicAssets/TexCommon/Atlas
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CommonAtlas
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5ca7b86b694674748ac83f99e7f80f19, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7845704849f704b4d9293b5d854b3d33, type: 2}
+    - {fileID: 11400000, guid: 90b314c076f9b554cb2ff023a76dd96a, type: 2}

@@ -1,0 +1,34 @@
+-- SetVariable
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "SetVariable",
+    type = "Action",
+    desc = "设置值",
+    args = {
+        { "property", "string", "状态属性" },
+        { "setExpress", "lua?", "表达式" },
+        { "setString", "string?", "字符串值" },
+        { "setNumber", "string?", "数字值" },
+        { "setBool", "boolean?", "布尔值" },
+    }
+}
+
+function M.run(node, env)
+    if node.args.setExpress then
+        env:set_var(node.args.property, loadstring(node.args.setExpress)())
+    elseif node.args.setString then
+        env:set_var(node.args.property, node.args.setString)
+    elseif node.args.setNumber then
+        env:set_var(node.args.property, tonumber(node.args.setNumber))
+    elseif node.args.setBool ~= nil then
+        env:set_var(node.args.property, node.args.setBool)
+    else
+        env:set_var(node.args.property, nil)
+    end
+    return bret.SUCCESS
+end
+
+return M

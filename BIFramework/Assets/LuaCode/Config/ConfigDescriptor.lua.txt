@@ -1,0 +1,917 @@
+---@class HelpConfig B.帮助
+---@field ID number 帮助ID
+---@field Name string 页面标题
+---@field Title string 章节标题
+---@field Desc string 帮助内容
+---@field Display string[] 展示图
+
+---@class ParameterConfig C.参数表
+---@field ID number 参数ID
+---@field Value_INT number 参数值
+---@field Value_I_Array number[] 
+---@field Value_I_TwoArray number[][] 
+---@field Value_FLOAT number 
+---@field Value_F_Array number[] 
+---@field Value_S_Array string[] 
+
+---@class AchievementGroup C.成就.分组
+---@field ID number 页签ID
+---@field Name string 页签名
+---@field Order number 排序
+---@field Count number 成就总点数
+---@field Award number[][] 达成奖励
+
+---@class Language D.多语言
+---@field ID string ID
+---@field CHS string 简中
+---@field CHT string 繁中
+---@field EN string 英文
+
+---@class DialogueConfig D.对话
+---@field ID string 对话ID
+---@field Talker string 说话人
+---@field Desc string 简中
+---@field Type number 自身类型
+---@field Icon string[] 图标
+---@field NextType number 后续对话类型
+---@field NextId number[] 后续ID
+---@field ActivityId number 活动ID
+---@field ExtraTrigger number 额外触发
+
+---@class ExpConfig D.等级..整合
+---@field ID number 等级
+---@field Exp number 声望（账号）经验 影响账号等级
+---@field BreakAttr number 账号等级 影响体力上限
+---@field Award number[][] 奖励道具
+---@field FirstIcon string[] 账号等级首奖励图标
+---@field FirstDesc string 账号等级首奖励名称
+---@field UnlockFunction string[] 账号等级解锁功能图
+---@field UnlockDesc string 账号等级解锁功能描述
+---@field UnlockSeed number[] 账号等级解锁种子
+---@field ReviveBasics number 复活时间A基础
+---@field ReviveGrow number 复活时间B增长
+---@field EnvironmentExp number 环境值 决定环境等级
+---@field FavorExp number 心心花（NPC好感经验）  决定NPC对玩家的好感等级
+---@field FriendExp number 好友交契（好友经验） 决定好友间的好友等级
+
+---@class ExpProsperity D.等级.村子等级及影响
+---@field ID number 村子等级
+---@field Construction number 建设值需求
+---@field NumNPC number 村民数量需求
+---@field LandNum number 种地栏位
+---@field BreedNum number 养殖栏位
+---@field MakeNum number 制作栏位
+---@field PieceMakeNum number 块制作栏位
+---@field DressmakerNum number 裁缝栏位
+
+---@class ExpSocial D.等级.社交等级及影响
+---@field ID number 社交等级
+---@field Name string 名称
+---@field Prosperity number 需求村子等级
+---@field SumFriend number 需求 好友等级 之和
+---@field FriendNum number 好友数
+---@field BlacklistNum number 黑名单
+---@field MoodChain number 金兰积攒上限
+---@field DealNum number 交易栏位上限
+---@field BackyardNum number 后山次数
+---@field PhotoNum number 照片次数
+
+---@class BusStop G.公交站点
+---@field ID number 乡ID
+---@field Name string 名字
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Type number 类型
+---@field Box number 对应大世界box
+---@field Maps number[] 地图
+
+---@class WorldConfig G.公共世界
+---@field ID number 关卡ID
+---@field Name string 名字
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Coord number[] 地图上的坐标
+---@field Type number 类型
+---@field Link number[] 关联
+---@field Battle number 需求主线
+---@field Difficulty number 难度
+---@field MapData string 地图文件
+---@field FishWater number 钓空水 掉落组
+---@field TestMap number 测试地图
+
+---@class BattleConfig G.关卡..总表
+---@field ID number 关卡ID
+---@field Name string 名字
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Environment number[] 环境情报
+---@field NPCInformation number[][] NPC情报
+---@field Danger number[] 需要注意的NPC
+---@field Output number[] 可能获得的产物
+---@field Type number 副本类型
+---@field Level number 需求账号等级
+---@field Power number 体力消耗
+---@field Front number 前置副本
+---@field Next number 后置副本
+---@field FixedDrop number[][] 固定掉落
+---@field RandomDrop number[][] 随机掉落
+---@field ChapterID number 所属章
+---@field Start number 起始营地
+---@field IncludeBox number[] 包含box
+---@field Difficulty number 难度
+---@field Terrain number 地形类型
+---@field Season number 季节属性
+
+---@class BattleChapter G.关卡.章
+---@field ID number 乡ID
+---@field Name string 名字
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Type number 类型
+---@field Explore number 探索事件数量
+---@field BattleID number[] 包含关卡（难度）
+
+---@class UnlockConfig G.功能解锁
+---@field ID number 功能ID
+---@field Type number 解锁类型
+---@field Value number 需要的参数
+---@field GuideID number 引导ID
+---@field Corner string[] 功能角标
+---@field AppearPiece number[][] 显现奖励块
+---@field AppearMap string 显现的地图
+---@field UnlockArea string 解锁的自由区域
+
+---@class ActivityConfig H.活动
+---@field ID number 活动ID
+---@field Name string 名字
+---@field Desc string 描述
+---@field Display string 展示页
+---@field TimeType number 活动时间类型
+---@field Time number[] 活动时间
+---@field Playing number 活动玩法（类型
+---@field Details number[] 活动内容
+---@field HighPermitAward number[][] 高级通行证奖励展示
+
+---@class ActivityExchange H.活动兑换
+---@field ID number 商品ID
+---@field Name string 商品名
+---@field Get number[][] 获得
+---@field Expend number[][] 消耗道具
+---@field ExpendCurrency number[][] (废弃）消耗货币
+---@field LimitNum number 限购个数
+
+---@class ActivityPage H.活动页
+---@field ID number 活动ID
+---@field Name string 名字
+---@field Desc string 描述
+---@field PageIcon string[] 页图标
+---@field Display string[] 展示页
+---@field ActivityId number 活动ID
+---@field Type number 页类型
+---@field OpenTime number[] 活动内解锁时段
+---@field Content number[] 页内容
+---@field Currency number[] 页货币
+
+---@class SkillConfig J.技能..主动
+---@field ID number 技能ID
+---@field Name string 技能名
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Type number 类型（主展示用）
+---@field Cd number 技能CD
+---@field RangeType number 攻击范围类型
+---@field Target number 命中目标
+---@field Execute string[] 执行 1伤害 2治疗 3buff
+---@field Action string 技能动作
+---@field Keyframe number[] 动作关键帧 无效的 填1？
+---@field RepelDynamics number 击退力度
+---@field RepelTime number 击退时间（秒）
+---@field AdvanceDynamics number 前进力度
+---@field AdvanceTime number 前进时间（秒）
+---@field CastEffectsId number 施放特效ID
+---@field BulletId number 子弹ID
+---@field HitEffectsId number 受击特效ID
+---@field InfuriateCoefficient number 激怒系数
+---@field Decibel number 分贝
+
+---@class SkillBUFF J.技能.BUFF
+---@field ID number BUFF ID
+---@field Name string buff名
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Type number buff类型
+---@field Team number 组
+---@field Level number 组内等级
+---@field Content table<string, number> buff内容（参数）
+
+---@class SkillBullet J.技能.子弹
+---@field ID number 子弹 ID
+---@field Straight number 直线 抛物线
+---@field Speed number 子弹速度
+---@field Effects string 子弹特效
+---@field DropPoint string 落点特效
+---@field ExecuteType number 子弹伤害类型
+
+---@class SkillPassive J.技能.被动
+---@field ID number 技能ID
+---@field Name string 技能名
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Type number 类型
+---@field Team number 组
+---@field Level number 组内等级
+---@field Max number 最大等级
+---@field Value1 table<string, number> 数值属性
+---@field Value2 table<string, number> 百分比放大属性
+
+---@class RoleHERO J.角色..主角
+---@field ID number 英雄ID
+---@field Name string 角色名
+---@field RoleSuperficiesID string 角色外表ID
+---@field Atk number 攻击
+---@field Def number 防御
+---@field Hp number 血量
+---@field AtkSpeed number 攻击速度
+---@field Speed number 移动速度
+---@field OtherAttr table<string, number> 额外属性
+---@field SkillID number 主动技能ID
+---@field TalentID number[] 初始天赋ID
+
+---@class RolePotency J.角色..主角潜能
+---@field ID number 天赋ID
+---@field Name string 潜能名
+---@field Type number 潜能类型
+---@field Content table<string, number> 潜能内容
+---@field Expend number[][] 升级消耗
+---@field ExpendCurrency number[][] 消耗货币
+---@field Front number 前置
+---@field Base number 基础潜能
+---@field place number[] 位置
+
+---@class RoleEmoji J.角色..主角表情
+---@field ID number 表情ID
+---@field Name string 表情名
+---@field Resource string 表情资源
+---@field Perform number 表情对应表演
+---@field Obtain number 获得方式
+---@field Value number 获得参数
+
+---@class RoleNPC J.角色.NPC
+---@field ID number 角色ID
+---@field Name string 角色名
+---@field RoleFace string 角色头像
+---@field RoleSuperficiesID string 角色外表ID
+---@field Type number NP类型
+---@field GivePiece number 赠送块
+---@field Clothes number[] NPC初始装扮
+---@field Gift1 number[][] 小好感物
+---@field Gift2 number[][] 中好感物
+---@field Gift3 number[][] 大好感物
+---@field AgainIdle number 再次闲散概率
+---@field GoHome number 回出生点概率
+---@field InplacePerformance number 原地演出权重
+---@field PieceInteraction table<string, number> 块交互演出倾向
+---@field MoveSpace number 移动向空地权重
+---@field MovingRange  number 行动范围
+---@field HelloDesc string NPC打招呼文本
+---@field ResidentScene number 常驻场景
+
+---@class RoleFavor J.角色.NPC好感
+---@field ID number 好感ID
+---@field Name string 名
+---@field FavorLevel number 等级
+---@field Type number 奖励类型
+---@field Award number[][] 奖励数据
+
+---@class RoleSuperficies J.角色.外表
+---@field ID string 外表ID
+---@field Name string 角色名
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Bust string 半身像
+---@field Model string 模型
+---@field Voice string 语音
+
+---@class RoleMonster J.角色.怪物
+---@field ID number 角色ID
+---@field Name string 角色名
+---@field RoleSuperficiesID string 角色外表ID
+---@field Type number 角色大类 影响刷新规律
+---@field IsTask number[] 任务用
+---@field Species number 物种
+---@field RefreshCD number 刷新CD X天
+---@field Race number 角色细类型
+---@field Corpse number 尸体块
+---@field Attr number[] 属性组
+---@field Drop number[] 产物组 副本用
+---@field EnvironmentDrop number[] 环境产物组 （探索用
+---@field DieMonster number[] 死亡刷怪
+
+---@class RoleAttr J.角色.怪物属性模版
+---@field ID number 属性ID
+---@field Name string 名
+---@field Atk number 攻击
+---@field Def number 防御
+---@field Hp number 血量
+---@field AtkSpeed number 攻击速度
+---@field Speed number 移动速度
+---@field RepelResistance number 击退抗性
+---@field OtherAttr table<string, number> 额外属性
+---@field BehaviorID string 行为ID
+---@field SkillID number 主动技能ID
+---@field TalentID number[] 天赋ID
+
+---@class RoleMonsterTeam J.角色.怪物组
+---@field ID number ID
+---@field RefreshCD number 刷新cd 小时
+---@field Environment1 number[][] 环境1级
+---@field Environment2 number[][] 环境2级
+---@field Environment3 number[][] 环境3级
+---@field Environment4 number[][] 环境4级
+---@field Environment5 number[][] 环境5级
+
+---@class RoleSpecies J.角色.物种
+---@field ID number 种族ID
+---@field Name string 物种名
+---@field Prey number[] 捕食（吃
+---@field Predator number[] 天敌（被吃
+---@field AgainIdle number 再次闲散概率
+---@field GoHome number 回出生点概率
+---@field InplacePerformance number 原地演出权重
+---@field InplaceId string[][] 各原地演出ID| 各权重
+---@field PieceInteraction table<string, number> 交互倾向
+---@field MoveSpace number 移动向空地权重
+---@field MovingRange  number 行动范围
+---@field VisualLength number 视觉长度
+---@field VisualAngle  number 视觉角度
+---@field HearingFloor number 听觉下限
+---@field HearingThreat number 听觉威胁值
+---@field Infuriate number 激怒概率
+---@field FightBack  number 反击概率
+---@field FightFlee number 战斗逃离率
+---@field RunTime number 逃跑时间
+---@field WeightWeather number[] 天气对权重的影响
+---@field WeightTime number[] 时间段对权重的影响
+
+---@class RolePerform J.角色.表演.NPC和怪物
+---@field ID number 表演ID
+---@field Name string 表演名
+---@field Resource string 表演资源
+---@field Interrupt number 玩家执行此动作时 是否发起打断
+---@field Range number 玩家对NPC的打断影响范围
+---@field Level number 被打断级别
+---@field Favor number 玩家对NPC的打断好感需求
+---@field Coordinate number[][] 被打断的配合表演ID  ID~权重|ID~权重
+
+---@class RoleBrand J.角色.装扮.品牌
+---@field ID number 品牌ID
+---@field Name string 名
+---@field Desc string 描述
+---@field Logo string 标志
+---@field Display string 大立图
+---@field Icon string 图标
+
+---@class RoleColour J.角色.装扮.换色
+---@field ID number 颜色ID
+---@field Type number 类型
+---@field Colour string 色值
+---@field Desc string 描述
+
+---@class RoleClothes J.角色.装扮.服装
+---@field ID number 服装ID
+---@field Name string 服装名称
+---@field Desc string 描述
+---@field Icon string[] 图标
+---@field Model string 转
+---@field Page number 页签
+---@field Order number 展示排序
+---@field Conceal number 隐藏
+---@field Quality number 品质
+---@field Brand number 品牌
+---@field Type number 大类型
+---@field Place number[] 占位
+---@field Headwear number 头饰位置
+---@field Break number[][] 分解可得
+---@field TailorWeight number[][] 裁缝权重
+---@field Source number[] 来源
+---@field Expend number[][] 购买消耗
+---@field LimitType number 限购类型
+---@field LimitNum number 限购个数
+---@field Add string 上架时间
+---@field Out string 下架时间
+
+---@class ClothesFactor J.角色.装扮.服装因子
+---@field ID number 因子ID
+---@field Desc string 因子描述
+---@field FactorValue number[][] 因子数据
+
+---@class PieceConfig K.块..数据
+---@field ID number 块ID
+---@field Name string 块名
+---@field Desc string 描述
+---@field Set number 所属套系
+---@field Icon string[] 图标
+---@field Function number 功能角标
+---@field Form number[] 块形态（优先左侧形态）
+---@field ShowType number 显示分类
+---@field Type number 类型
+---@field Order number 展示排序
+---@field Quality number 品质
+---@field Construction number 建设值
+---@field Put number 摆放值
+---@field InteractionType number 交互类型 仅AI用
+---@field PerformId number 块交互 表演ID
+---@field Feature string 特性
+---@field Parameter number[] 参数
+---@field Dialogue number 默认对话框
+---@field DefaultKeyValue table<string, string> 默认属性
+
+---@class QualityConfig P.品质相关
+---@field ID number 品质ID
+---@field MainAttrUp number 主属性加成
+---@field SubAttrNum number 副属性条目
+---@field SubAttrUp number 副属性加成
+---@field SubAffixNum number 副词缀条数
+---@field SubAffixQuality number[] 副词缀品质范围
+
+---@class TaskConfig R.任务（成就）..总表
+---@field ID number 任务ID
+---@field Name string 任务名/成就名
+---@field Order number 展示排序
+---@field Type number 任务类型
+---@field RefreshType number 刷新类型
+---@field Level number 需求账号等级
+---@field NPCGet number NPC接取
+---@field Activity number[] 活动/时间段ID
+---@field Group number 成就分组
+---@field FrontTask number 前置任务
+---@field NextTask number[] 后置任务
+---@field StageArray number[][] 任务阶段数组
+---@field Award number[][] 任务奖励
+---@field Conceal number 隐藏任务/成就
+
+---@class TaskStage R.任务（成就）.阶段表
+---@field ID number 阶段ID
+---@field Desc string 阶段描述
+---@field Task number 阶段所属任务
+---@field NPC number 阶段来源NPC
+---@field TargetType number 阶段指引类型
+---@field TargetValue number 阶段指引参数
+---@field ForceDialogue number[][] 阶段内NPC强制对话
+---@field ConditionDesc string 阶段条件描述
+---@field Condition number 任务条件
+---@field Parameter number[] 条件参数值
+---@field Num number 需求数量
+---@field StageAward number[][] 阶段奖励（成就）
+---@field SpecialPhoto number 记怪条件
+---@field PhotoAward number[][] 记怪每进度奖励
+---@field Count number 成就点数
+
+---@class ShopConfig S.商店..总表
+---@field ID number 商品ID
+---@field Name string 商品名
+---@field Desc string 商品描述
+---@field Icon string 图标
+---@field SalePic string 折扣展示图
+---@field Page number 商店页签
+---@field Order number 排序
+---@field Type number 商品类型
+---@field Get number[][] 获得
+---@field FirstGiving number[][] 充值首次赠送
+---@field ExpendRMB number RMB消耗
+---@field Expend number[][] 消耗
+---@field ExpendCurrency number[][] (废弃）消耗货币
+---@field LimitType number 限购类型
+---@field LimitNum number 限购个数
+---@field Add string 上架时间
+---@field Out string 下架时间
+
+---@class ShopPage S.商店.页签
+---@field ID number 页签ID
+---@field Name string 页签名
+---@field Desc string 页签描述
+---@field Type number 展示类型
+---@field Order number 排序
+---@field Money number[] 显示货币
+
+---@class TimeConfig S.时间段
+---@field ID number 时间段ID
+---@field Name string 名字
+---@field Desc string 描述
+---@field Icon string[] 小icon
+---@field Pic string[] 展示图
+---@field TimeType number 时间段类型
+---@field Start string 起始时间
+---@field End string 结束时间
+---@field Include number[] 包含
+---@field PicAward string 节气奖励图
+---@field CustomName string 节气风俗名
+---@field CustomDesc string 节气风俗描述/物候参与描述
+---@field CustomIcon string[] 节气风俗小icon
+---@field CustomPic string[] 节气风俗展示图
+---@field CustomItem number[][] 节气风俗素材
+---@field WeatherName string 气象名
+---@field WeatherDesc string 气象描述
+
+---@class MysteryBox S.糖画商.盲盒
+---@field ID number 盲盒ID
+---@field Name string 名
+---@field Desc string 描述
+---@field Pic string 盲盒图
+---@field Desc string 概率说明
+---@field Show number[] 奖励一览
+---@field Order number 展示排序
+---@field Price number[][] 盲盒价格
+---@field Sum number 总奖励数量
+---@field LimitType number 限购类型
+---@field LimitNum number 限购个数
+---@field Add string 上架时间
+---@field Out string 下架时间
+---@field OrderUp string 排序靠前时间
+
+---@class Roulette S.糖画商.转盘内容
+---@field ID number 盲盒ID
+---@field Name string 名
+---@field Desc string 描述
+---@field Design string 糖画图案
+---@field Quality number 品质
+---@field SugarPaint number 转糖ID
+---@field Type number 奖励类型
+---@field Award number[][] 奖励
+---@field Num number 获取次数
+
+---@class SugarPaint S.糖画商
+---@field ID number 活动ID
+---@field Name string 名字
+---@field Desc string 描述
+---@field Display string 展示页
+---@field Type number 类型
+---@field Details number[] 内容
+---@field Start string 起始时间
+---@field End string 结束时间
+
+---@class RandomIncident S.随机事件
+---@field ID number 事件ID
+---@field Name string 事件名
+---@field Desc string 事件描述
+---@field Type number 事件类型
+---@field Core number 核心事件
+---@field Content number 事件内容
+---@field Condition number 事件条件
+---@field Parameter number[] 条件参数值
+---@field Num number 需求数量
+---@field Output number[] 事件奖励预览
+---@field Drop number[] 奖励数组
+
+---@class RandomConfig S.随机总表
+---@field ID number 随机ID
+---@field Weight1 number 1权重
+---@field Type1 number 1类型
+---@field Get1 number 1得到ID
+---@field Num1 number 1数量
+---@field Weight2 number 2权重
+---@field Type2 number 2类型
+---@field Get2 number 2得到ID
+---@field Num2 number 2数量
+---@field Weight3 number 3权重
+---@field Type3 number 3类型
+---@field Get3 number 3得到ID
+---@field Num3 number 3数量
+---@field Weight4 number 4权重
+---@field Type4 number 4类型
+---@field Get4 number 4得到ID
+---@field Num4 number 4数量
+---@field Weight5 number 5权重
+---@field Type5 number 5类型
+---@field Get5 number 5得到ID
+---@field Num5 number 5数量
+---@field Weight6 number 6权重
+---@field Type6 number 6类型
+---@field Get6 number 6得到ID
+---@field Num6 number 6数量
+---@field Weight7 number 7权重
+---@field Type7 number 7类型
+---@field Get7 number 7得到ID
+---@field Num7 number 7数量
+---@field Weight8 number 8权重
+---@field Type8 number 8类型
+---@field Get8 number 8得到ID
+---@field Num8 number 8数量
+
+---@class ClueConfig S.随机线索
+---@field ID number ID
+---@field Name string 名
+---@field Desc string 描述
+---@field Type number 线索类型
+
+---@class DifficultyDrop S.随机难度掉落
+---@field ID number 掉落ID
+---@field Name string 名
+---@field FixedDrop number[][] 固定掉落
+---@field RandomDrop number[][] 随机掉落
+---@field ExtraDropId number[][] 时间段额外 再次掉落
+---@field StageDropId number[][] 任务阶段 再次掉落
+
+---@class DrawingFood T.图纸.食物
+---@field ID number 制造图纸ID
+---@field Name string 图纸名
+---@field Desc string 图纸描述
+---@field Icon string[] 图标
+---@field Order number 展示排序
+---@field Quality number 品质
+---@field Type number 类型
+---@field Source number 图纸来源
+---@field TimeId number 节气ID
+---@field Need number[] 需求物品
+---@field Food number 食物
+
+---@class DrawingConfig T.图纸
+---@field ID number 制造图纸ID
+---@field Name string 图纸名
+---@field Desc string 图纸描述
+---@field AttrDesc string 珠子属性描述
+---@field SkillDesc string 珠子技能描述
+---@field Size number 珠子尺寸
+---@field Icon string 图标
+---@field Order number 展示排序
+---@field Quality number 品质
+---@field Type number 类型
+---@field Level number 需求账号等级
+---@field Source number 图纸来源
+---@field SourceItem number 图纸来源道具ID
+---@field Need number[][] 需求物品 永远是纯道具
+---@field NeedCurrency number[][] (废弃）消耗货币
+---@field Variable number[][] 可变素材
+---@field Stack number 堆叠上限
+---@field Time number 消耗时间
+---@field Get number[][] 得到物品/掉落组/块ID
+
+---@class WeatherConfig T.天气
+---@field ID number 日期ID
+---@field Chapter0 number 鱼雁村
+---@field Chapter1 number 村前地
+---@field Chapter2 number 饮马水坝营地
+---@field Chapter3 number 温泉谷地营地
+---@field Chapter4 number 月令海营地
+---@field Chapter5 number 雨崩森林营地
+---@field Chapter6 number 花湖草原营地
+---@field Chapter7 number 三神雪山营地
+
+---@class PermitConfig T.通行证..总表
+---@field ID number 任务ID
+---@field Name string 奖励名
+---@field Activity number 通行证活动
+---@field NeedScore number 需求通行证分数
+---@field NormalAward number[][] 普通奖励
+---@field ActivateAward number[][] 激活奖励
+
+---@class TakeAway W.外卖
+---@field ID number 订单ID
+---@field Type number 订单类型
+---@field Need number[][] 订单需求商品
+---@field Award number[][] 奖励内容
+---@field Need number[][] 怪怪食物
+---@field Award number[][] 怪怪奖励
+---@field Need number[][] 美味食物
+---@field Award number[][] 美味奖励
+---@field Level number 玩家等级限制
+
+---@class ItemConfig W.物品..总表
+---@field ID number 物品ID
+---@field Name string 道具名
+---@field Desc string 描述
+---@field Story string 典故
+---@field Icon string[] 图标
+---@field Order number 展示排序
+---@field Quality number 品质
+---@field Type number 物品类型
+---@field Price number 出售价格 0不可卖  出售获得鱼雁币
+---@field Deal number 可交易
+---@field Use number 自动使用
+---@field Value_INT number 参数
+---@field Value_I_Item number[][] 复杂参数
+---@field Source string 道具来源
+---@field Purpose number[] 道具用途
+---@field FactorValue number[][] 裁缝因子数据
+
+---@class EquipConfig W.物品5.装备
+---@field ID number 物品ID
+---@field Name string 装备名
+---@field Desc string 描述
+---@field Story string 典故
+---@field Icon string[] 图标
+---@field Order number 展示排序
+---@field Quality number 品质
+---@field Type number 物品类型
+---@field Price number 出售价格
+---@field Part number 部位
+---@field Atk number 攻击
+---@field Def number 防御
+---@field Hp number 血量
+---@field SkillPassive number[] 被动技能
+---@field Groove number[] 孔位
+---@field Hide number 隐藏
+
+---@class FoodConfig W.物品6.食物
+---@field ID number 物品ID
+---@field Name string 食物名
+---@field Desc string 描述
+---@field Story string 典故
+---@field Icon string[] 图标
+---@field Order number 展示排序
+---@field Quality number 品质
+---@field Type number 物品类型
+---@field Price number 出售价格
+---@field HpUp number 恢复血量
+---@field BUFF number[] 附带BUFF
+---@field Time number 持续时间（分）
+---@field TimeId number 所属节气
+---@field ExtraBUFF number[] 时间段额外 BUFF
+
+---@class BeadConfig W.物品7.珠子
+---@field ID number 物品ID
+---@field Name string 珠子名
+---@field Desc string 描述
+---@field Story string 典故
+---@field Icon string[] 图标
+---@field Order number 展示排序
+---@field Quality number 品质
+---@field Type number 物品类型
+---@field Price number 出售价格
+---@field Size number 珠子尺寸
+---@field AttrRand number[] 属性随机
+---@field AttrRandValue number[] 属性价值区间
+---@field SkillPassive table<string, number> 被动技能ID=权重|被动技能ID=权重
+
+---@class Shopflyer X.宣传页
+---@field ID number 
+---@field Name string 名
+---@field Display string 图
+---@field Skip string[] 跳转
+
+---@class RareAnimal X.稀有动物
+---@field ID number ID
+---@field Name string 名
+---@field Desc string 描述
+---@field Clue number[] 需求线索
+
+---@class SeedConfig Z.种子..总表
+---@field ID number ID
+---@field Name string 种子大类
+---@field Desc string 描述
+---@field Icon string[] 图标
+---@field Order number 展示排序
+---@field Type number 大类型
+---@field Subtype number 子类型
+---@field LevelLimit number 限制等级
+---@field Quality number 品质
+---@field Time number 分钟
+---@field Output number[][] 基础产物
+---@field OutgrowthFixed number[][] 副产物 固定产出
+---@field OutgrowthRandom number[][] 副产物 随机产出
+---@field RareFixed number[][] 稀有产物 固定产出
+---@field RareRandom number[][] 稀有产物 随机产出
+---@field Expedite number[][] 可用加速道具
+---@field AffixNum number 词缀数量
+---@field AffixPond number[] 词缀池
+
+---@class SeedAffix Z.种子.词缀
+---@field ID number ID
+---@field Name string 词缀名
+---@field Desc string 描述
+---@field Icon string 图标
+---@field Type number 作用类型
+---@field Value number[][] 作用结果
+
+ 
+---@class Configs Configs
+---@field HelpConfig table<string, HelpConfig>
+---@field ParameterConfig table<string, ParameterConfig>
+---@field AchievementGroup table<string, AchievementGroup>
+---@field Language table<string, Language>
+---@field DialogueConfig table<string, DialogueConfig>
+---@field ExpConfig table<string, ExpConfig>
+---@field ExpProsperity table<string, ExpProsperity>
+---@field ExpSocial table<string, ExpSocial>
+---@field BusStop table<string, BusStop>
+---@field WorldConfig table<string, WorldConfig>
+---@field BattleConfig table<string, BattleConfig>
+---@field BattleChapter table<string, BattleChapter>
+---@field UnlockConfig table<string, UnlockConfig>
+---@field ActivityConfig table<string, ActivityConfig>
+---@field ActivityExchange table<string, ActivityExchange>
+---@field ActivityPage table<string, ActivityPage>
+---@field SkillConfig table<string, SkillConfig>
+---@field SkillBUFF table<string, SkillBUFF>
+---@field SkillBullet table<string, SkillBullet>
+---@field SkillPassive table<string, SkillPassive>
+---@field RoleHERO table<string, RoleHERO>
+---@field RolePotency table<string, RolePotency>
+---@field RoleEmoji table<string, RoleEmoji>
+---@field RoleNPC table<string, RoleNPC>
+---@field RoleFavor table<string, RoleFavor>
+---@field RoleSuperficies table<string, RoleSuperficies>
+---@field RoleMonster table<string, RoleMonster>
+---@field RoleAttr table<string, RoleAttr>
+---@field RoleMonsterTeam table<string, RoleMonsterTeam>
+---@field RoleSpecies table<string, RoleSpecies>
+---@field RolePerform table<string, RolePerform>
+---@field RoleBrand table<string, RoleBrand>
+---@field RoleColour table<string, RoleColour>
+---@field RoleClothes table<string, RoleClothes>
+---@field ClothesFactor table<string, ClothesFactor>
+---@field PieceConfig table<string, PieceConfig>
+---@field QualityConfig table<string, QualityConfig>
+---@field TaskConfig table<string, TaskConfig>
+---@field TaskStage table<string, TaskStage>
+---@field ShopConfig table<string, ShopConfig>
+---@field ShopPage table<string, ShopPage>
+---@field TimeConfig table<string, TimeConfig>
+---@field MysteryBox table<string, MysteryBox>
+---@field Roulette table<string, Roulette>
+---@field SugarPaint table<string, SugarPaint>
+---@field RandomIncident table<string, RandomIncident>
+---@field RandomConfig table<string, RandomConfig>
+---@field ClueConfig table<string, ClueConfig>
+---@field DifficultyDrop table<string, DifficultyDrop>
+---@field DrawingFood table<string, DrawingFood>
+---@field DrawingConfig table<string, DrawingConfig>
+---@field WeatherConfig table<string, WeatherConfig>
+---@field PermitConfig table<string, PermitConfig>
+---@field TakeAway table<string, TakeAway>
+---@field ItemConfig table<string, ItemConfig>
+---@field EquipConfig table<string, EquipConfig>
+---@field FoodConfig table<string, FoodConfig>
+---@field BeadConfig table<string, BeadConfig>
+---@field Shopflyer table<string, Shopflyer>
+---@field RareAnimal table<string, RareAnimal>
+---@field SeedConfig table<string, SeedConfig>
+---@field SeedAffix table<string, SeedAffix>
+ 
+return {
+    id = {
+        "HelpConfig",
+        "ParameterConfig",
+        "AchievementGroup",
+        "Language",
+        "DialogueConfig",
+        "ExpConfig",
+        "ExpProsperity",
+        "ExpSocial",
+        "BusStop",
+        "WorldConfig",
+        "BattleConfig",
+        "BattleChapter",
+        "UnlockConfig",
+        "ActivityConfig",
+        "ActivityExchange",
+        "ActivityPage",
+        "SkillConfig",
+        "SkillBUFF",
+        "SkillBullet",
+        "SkillPassive",
+        "RoleHERO",
+        "RolePotency",
+        "RoleEmoji",
+        "RoleNPC",
+        "RoleFavor",
+        "RoleSuperficies",
+        "RoleMonster",
+        "RoleAttr",
+        "RoleMonsterTeam",
+        "RoleSpecies",
+        "RolePerform",
+        "RoleBrand",
+        "RoleColour",
+        "RoleClothes",
+        "ClothesFactor",
+        "PieceConfig",
+        "QualityConfig",
+        "TaskConfig",
+        "TaskStage",
+        "ShopConfig",
+        "ShopPage",
+        "TimeConfig",
+        "MysteryBox",
+        "Roulette",
+        "SugarPaint",
+        "RandomIncident",
+        "RandomConfig",
+        "ClueConfig",
+        "DifficultyDrop",
+        "DrawingFood",
+        "DrawingConfig",
+        "WeatherConfig",
+        "PermitConfig",
+        "TakeAway",
+        "ItemConfig",
+        "EquipConfig",
+        "FoodConfig",
+        "BeadConfig",
+        "Shopflyer",
+        "RareAnimal",
+        "SeedConfig",
+        "SeedAffix",
+
+    }
+}

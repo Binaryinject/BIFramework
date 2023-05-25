@@ -1,0 +1,52 @@
+{
+    "name": "AstarPathfindingProjectEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:efa45043feb7e4147a305b73b5cea642",
+        "GUID:774e21169c4ac4ec8a01db9cdb98d33b",
+        "GUID:f4059aaf6c60a4a58a177a2609feb769",
+        "GUID:de4e6084e6d474788bb8c799d6b461eb"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "MODULE_BURST",
+        "MODULE_MATHEMATICS",
+        "MODULE_COLLECTIONS",
+        "MODULE_JOBS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.burst",
+            "expression": "1.7.2",
+            "define": "MODULE_BURST"
+        },
+        {
+            "name": "com.unity.mathematics",
+            "expression": "1.2.1",
+            "define": "MODULE_MATHEMATICS"
+        },
+        {
+            "name": "com.unity.collections",
+            "expression": "1.4.0",
+            "define": "MODULE_COLLECTIONS"
+        },
+        {
+            "name": "com.unity.jobs",
+            "expression": "0.70.0-preview.7",
+            "define": "MODULE_JOBS"
+        },
+        {
+            "name": "com.unity.collections",
+            "expression": "0.11-preview",
+            "define": "MODULE_COLLECTIONS_0_11_OR_NEWER"
+        }
+    ],
+    "noEngineReferences": false
+}

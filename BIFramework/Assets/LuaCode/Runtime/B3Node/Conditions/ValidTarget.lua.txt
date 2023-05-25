@@ -1,0 +1,22 @@
+-- ValidTarget
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "ValidTarget",
+    type = "Condition",
+    desc = "目标是否有效",
+    input = {"目标"},
+}
+
+---@param target 
+function M.run(node, env, target)
+    if target == nil or target:IsDeath() then
+        return bret.FAIL
+    end
+    
+    return bret.SUCCESS
+end
+
+return M

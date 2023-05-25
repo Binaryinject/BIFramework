@@ -1,0 +1,48 @@
+-- GetInteraction
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetInteraction",
+    type = "Condition",
+    desc = "交互目标位置随机",
+    args = {
+        { "radius", "int", "范围格子" },
+    },
+    output = { "交互格子位置" }
+}
+
+function M.run(node, env)
+    local wfcGenerator = Map.SandBoxBuilder.wfcGenerator
+    local position = Map:GetShareRole(env.owner.Type, env.owner.ID).position:Get()
+    local interactions = wfcGenerator:GetGridsByRadius(position, node.args.radius, CS.WfcGenerator.SearchType.Interaction)
+    local predators = newT()
+    local weightAll = 0
+    for i, _ in pairs(interactions) do
+        local type = tostring(Configs.PieceConfig[i].InteractionType)
+        local species = tostring(Configs.RoleMonster[env.owner.CID].Species)
+        local predator = Configs.RoleSpecies[species].Predator
+        local weight = predator[type]
+        if weight then
+            predators[i] = weight
+            weightAll = weightAll + weight
+        end
+    end
+    
+    if weightAll > 0 then 
+        local weightedSelection = Random.Range(0, weightAll)
+        local sum = 0
+        for i, v in predators:opairs() do
+            sum = sum + v
+            if sum >= weightedSelection then
+                local gid = wfcGenerator.gridKeys[tonumber(interactions[i][Random.Range(1, #interactions[i])])]
+                return bret.SUCCESS, wfcGenerator.gridPositions[gid]
+            end
+        end
+    end
+    --print(serpent.block(gridDic))
+    return bret.FAIL
+end
+
+return M

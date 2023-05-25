@@ -1,0 +1,28 @@
+-- GetVariable
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "GetVariable",
+    type = "Condition",
+    desc = "变量查询",
+    args = {
+        { "property", "string", "变量属性" },
+    },
+    output = {"获取值"}
+}
+
+function M.run(node, env)
+    local variable = env:get_var(node.args.property)
+    if variable == nil then
+        return bret.FAIL
+    end
+    if type(variable) == "boolean" then
+        return TernaryOp(variable, bret.SUCCESS, variable, bret.FAIL), variable
+    else
+        return bret.SUCCESS, variable
+    end
+end
+
+return M

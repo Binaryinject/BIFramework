@@ -1,0 +1,26 @@
+-- StopMovement
+--
+
+local bret = require "Common.behavior3.behavior_ret"
+
+local M = {
+    name = "StopMovement",
+    type = "Action",
+    desc = "停止移动",
+    args = {
+        { "inactive", "boolean?", "反选自身" },
+    }
+}
+
+function M.run(node, env)
+    local owner = env.owner
+    local args = node.args
+    owner.character:StopMovement()
+
+    if node.args.inactive then
+        owner:TemporarilyHide(true)
+    end
+    return bret.SUCCESS
+end
+
+return M

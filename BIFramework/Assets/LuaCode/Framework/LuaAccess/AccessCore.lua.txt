@@ -1,0 +1,60 @@
+---@class AccessCore
+---@field Count number
+---@field Table table
+local AccessCore = class("AccessCore")
+
+AccessCore.index = 1
+AccessCore._luaCSharpArr = LuaCSharpArr.New(64)
+
+function AccessCore.Get:Index()
+    return self.index
+end
+
+function AccessCore.Get:Table()
+    return self._luaCSharpArr
+end
+
+function AccessCore:Dispose()
+    self._luaCSharpArr:DestroyCSharpAccess()
+end
+
+function AccessCore:New(num)
+    num = num or 64
+    self._luaCSharpArr:DestroyCSharpAccess()
+    self._luaCSharpArr = LuaCSharpArr.New(num)
+    self.index = 1
+end
+
+function AccessCore:Extend(num)
+    self.index = self.index + num
+end
+
+function AccessCore:GetCSharpAccess()
+    return self._luaCSharpArr:GetCSharpAccess()
+end
+
+function AccessCore:AInt(num)
+    return AInt(self, num)
+end
+
+function AccessCore:AFloat(num)
+    return AFloat(self, num)
+end
+
+function AccessCore:ABool(num)
+    return ABool(self, num)
+end
+
+function AccessCore:ADouble(num)
+    return ADouble(self, num)
+end
+
+function AccessCore:AVector3(num)
+    return AVector3(self, num)
+end
+
+function AccessCore:AVector4(num)
+    return AVector4(self, num)
+end
+
+return AccessCore

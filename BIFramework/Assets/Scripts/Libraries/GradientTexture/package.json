@@ -1,0 +1,27 @@
+{
+  "name": "com.mitay-walle.gradient-texture",
+  "version": "1.0.7",
+  "displayName": "Gradient Texture",
+  "description": "Unity Procedural gradient texture generator \n\nTexture2D-Gradient generated dynamicly at Editor-time, by ScriptableObject with Gradient-properties",
+  "unity": "2018.4",
+  "documentationUrl": "https://github.com/mitay-walle/GradientTexture/blob/main/README.md",
+  "licensesUrl": "https://github.com/mitay-walle/GradientTexture/blob/main/LICENSE.md",
+  "dependencies": { },
+ "keywords": [
+    "Texture",
+    "Procedural",
+    "Gradient"
+  ],
+  "author": {
+    "name": "mitay-walle",
+    "email": "mitay-walle91@mail.ru",
+    "url": "https://github.com/mitay-walle"
+  },
+  "samples": [
+    {
+      "displayName": "Example Gradients",
+      "description": "Contains couple of gradient texture assets with different setup",
+      "path": "Samples/SamplesGradientTexture"
+    }
+  ]
+}

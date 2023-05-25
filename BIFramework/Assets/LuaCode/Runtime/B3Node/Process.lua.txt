@@ -1,0 +1,44 @@
+return {
+    -- 复合节点
+    IfElse = require "Common.behavior3.nodes.composites.ifelse",
+    Parallel = require "Common.behavior3.nodes.composites.parallel",
+    Selector = require "Common.behavior3.nodes.composites.selector",
+    Sequence = require "Common.behavior3.nodes.composites.sequence",
+    Tick = require "Runtime.B3Node.Composite.Tick",
+
+    -- 装饰节点
+    Not = require "Common.behavior3.nodes.decorators.not",
+    AlwaysFail = require "Common.behavior3.nodes.decorators.always_fail",
+    AlwaysSuccess = require "Common.behavior3.nodes.decorators.always_success",
+
+    -- 条件节点
+    Cmp = require "Common.behavior3.nodes.conditions.cmp",
+    GetSensor = require "Runtime.B3Node.Conditions.GetSensor",
+    GetSpawn = require "Runtime.B3Node.Conditions.GetSpawn",
+    GetPatrol = require "Runtime.B3Node.Conditions.GetPatrol",
+    GetWeight = require "Runtime.B3Node.Conditions.GetWeight",
+    GetInteraction = require "Runtime.B3Node.Conditions.GetInteraction",
+    GetVariable = require "Runtime.B3Node.Conditions.GetVariable",
+    GetProperty = require "Runtime.B3Node.Conditions.GetProperty",
+    ValidTarget = require "Runtime.B3Node.Conditions.ValidTarget",
+    GetEnmity = require "Runtime.B3Node.Conditions.GetEnmity",
+    GetRandom = require "Runtime.B3Node.Conditions.GetRandom",
+    CmpConfig = require "Runtime.B3Node.Conditions.CmpConfig",
+    ContainConfig = require "Runtime.B3Node.Conditions.ContainConfig",
+    GetRandomSphere = require "Runtime.B3Node.Conditions.GetRandomSphere",
+    CmpAnimation = require "Runtime.B3Node.Conditions.CmpAnimation",
+
+    -- 行为节点
+    Log = require "Common.behavior3.nodes.actions.log",
+    Wait = require "Common.behavior3.nodes.actions.wait",
+    RotateTowards = require "Runtime.B3Node.Actions.RotateTowards",
+    MoveToLocation = require "Runtime.B3Node.Actions.MoveToLocation",
+    Animation = require "Runtime.B3Node.Actions.Animation",
+    SetVariable = require "Runtime.B3Node.Actions.SetVariable",
+    SetProperty = require "Runtime.B3Node.Actions.SetProperty",
+    ShowTip = require "Runtime.B3Node.Actions.ShowTip",
+    ResetEnmity = require "Runtime.B3Node.Actions.ResetEnmity",
+    OppositePosition = require "Runtime.B3Node.Actions.OppositePosition",
+    MoveToPosition = require "Runtime.B3Node.Actions.MoveToPosition",
+    StopMovement = require "Runtime.B3Node.Actions.StopMovement",
+} 
