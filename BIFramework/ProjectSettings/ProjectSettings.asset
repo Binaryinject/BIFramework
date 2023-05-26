@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: 'Binaryinject '
+  companyName: Binaryinject
   productName: BIFramework
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -156,12 +156,12 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.Binaryinject.BIFramework
-    Standalone: com.DefaultCompany.BIFramework
+    Standalone: com.Binaryinject.BIFramework
   buildNumber:
     Standalone: 0
     iPhone: 0
     tvOS: 0
-  overrideDefaultApplicationIdentifier: 0
+  overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
@@ -171,7 +171,7 @@ PlayerSettings:
   iPhoneStrippingLevel: 0
   iPhoneScriptCallOptimization: 0
   ForceInternetPermission: 0
-  ForceSDCardPermission: 0
+  ForceSDCardPermission: 1
   CreateWallpaper: 0
   APKExpansionFiles: 0
   keepLoadedShadersAlive: 0
@@ -246,7 +246,7 @@ PlayerSettings:
   useCustomBaseGradleTemplate: 0
   useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 1
+  AndroidTargetArchitectures: 2
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -710,14 +710,16 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: GPU_INSTANCER;AMPLIFY_SHADER_EDITOR;GPUI_BURST;SHAPES_URP;ODIN_INSPECTOR;ODIN_INSPECTOR_3;UNITASK_DOTWEEN_SUPPORT;UNITASK_ADDRESSABLE_SUPPORT;UNITASK_TEXTMESHPRO_SUPPORT;ODIN_INSPECTOR_3_1;ODIN_VALIDATOR;ODIN_VALIDATOR_3_1;OSA_TV_TMPRO
-    Standalone: GPU_INSTANCER;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_VALIDATOR;ODIN_VALIDATOR_3_1;AMPLIFY_SHADER_EDITOR
+    Android: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_VALIDATOR;ODIN_VALIDATOR_3_1;OSA_TV_TMPRO;UNITASK_DOTWEEN_SUPPORT;UNITASK_ADDRESSABLE_SUPPORT;UNITASK_TEXTMESHPRO_SUPPORT
+    Standalone: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_VALIDATOR;ODIN_VALIDATOR_3_1;OSA_TV_TMPRO;UNITASK_DOTWEEN_SUPPORT;UNITASK_ADDRESSABLE_SUPPORT;UNITASK_TEXTMESHPRO_SUPPORT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
+    Standalone: 1
   il2cppCompilerConfiguration: {}
-  managedStrippingLevel: {}
+  managedStrippingLevel:
+    Standalone: 4
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 1
