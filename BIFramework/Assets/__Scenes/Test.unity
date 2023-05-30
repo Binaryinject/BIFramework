@@ -594,7 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchOnStart: 1
   luaGameObjects:
-  - {fileID: 719877193}
+  - {fileID: 1073422962}
 --- !u!4 &215686899
 Transform:
   m_ObjectHideFlags: 0

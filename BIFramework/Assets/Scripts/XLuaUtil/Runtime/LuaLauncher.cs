@@ -27,7 +27,6 @@ public class LuaLauncher : MonoBehaviour {
 
     public async UniTask Launch() {
         SceneManager.sceneLoaded += (scene, _) => { SceneManager.SetActiveScene(scene); };
-        Util.InitializeResolvers();
         await LuaEnvironment.Initialize();
         PipelineSetting();
         foreach (var obj in luaGameObjects) {
@@ -36,10 +35,6 @@ public class LuaLauncher : MonoBehaviour {
     }
 
     public static void PipelineSetting() {
-#if !UNITY_EDITOR
-        //disable shapes gpu instancing mode if platform doesn't support it
-        ShapesConfig.Instance.useImmediateModeInstancing = !Application.isMobilePlatform && SystemInfo.supportsInstancing;
-#endif
         var renderAssets = (UniversalRenderPipelineAsset) GraphicsSettings.renderPipelineAsset;
         if (Application.isMobilePlatform) {
             Application.targetFrameRate = GlobalSO.Instance.frameRate switch {
